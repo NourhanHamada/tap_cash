@@ -38,7 +38,6 @@ dependencies:
   bloc:
   flutter_bloc:
 #  design_UI_package
-  flutter_launcher_icons:
   animated_splash_screen:
   flutter_svg:
   font_awesome_flutter:
@@ -53,6 +52,11 @@ dependencies:
   flutter_rating_bar:
   go_router: ^6.5.7
   flutter_animation_progress_bar:
+  flutter_launcher_icons:
+flutter_icons:
+  android: 'launcher_icon'
+  ios: true
+  image_path: "assets/icons/logo.png"
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -62,6 +66,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
