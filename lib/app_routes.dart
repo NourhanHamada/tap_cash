@@ -1,6 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:tap_cash/view/screens/auth/login_screen.dart';
+import 'package:tap_cash/view/screens/auth/new_password_screen.dart';
+import 'package:tap_cash/view/screens/auth/otp_screen.dart';
 import 'package:tap_cash/view/screens/auth/signup_screen.dart';
+import 'package:tap_cash/view/screens/auth/verification_screen.dart';
 import 'package:tap_cash/view/screens/on_board.dart';
 import 'package:tap_cash/view/screens/splash_screen.dart';
 
@@ -9,6 +12,9 @@ abstract class AppRouter {
   static const String loginScreen = '/loginScreen';
   static const String signupScreen = '/signupScreen';
   static const String onBoardScreen = '/onBoardScreen';
+  static const String verificationScreen = '/verificationScreen';
+  static const String otpScreen = '/otpScreen';
+  static const String newPassword = '/newPassword';
 
   static final router = GoRouter(
     routes: [
@@ -27,6 +33,18 @@ abstract class AppRouter {
       GoRoute(
         path: onBoardScreen,
         builder: (context, state) => const OnBoardScreen(),
+      ),
+      GoRoute(
+        path: verificationScreen,
+        builder: (context, state) => const VerificationScreen(),
+      ),
+      GoRoute(
+        path: otpScreen,
+        builder: (context, state) => const OTPScreen(),
+      ),
+      GoRoute(
+        path: newPassword,
+        builder: (context, state) => const NewPassword(),
       ),
     ],
   );
