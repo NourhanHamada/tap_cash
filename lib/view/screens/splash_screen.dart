@@ -15,7 +15,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -33,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Image.asset(
               MyIcons.logo,
             ),
-             Text(
+            Text(
               MyStrings.appName,
               style: GoogleFonts.skranji(textStyle: MyStyles.textStyle40),
             ),
@@ -44,12 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   // Function to navigate to Home after 2 seconds.
-  void navigateToHome(){
-    Future.delayed(
-        const Duration(seconds: 2),
-            (){
-          GoRouter.of(context).push(AppRouter.loginScreen);
-        }
-    );
+  void navigateToHome() {
+    Future.delayed(const Duration(seconds: 2), () {
+      GoRouter.of(context).push(AppRouter.loginScreen);
+    });
   }
 }
