@@ -21,19 +21,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _repeatpasswordController = TextEditingController();
+  final _repeatPasswordController = TextEditingController();
   final _firstnameFocusNode = FocusNode();
   final _lastnameFocusNode = FocusNode();
   final _phoneFocusNode = FocusNode();
   final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
-  final _repeatpasswordFocusNode = FocusNode();
+  final _repeatPasswordFocusNode = FocusNode();
   bool isChecked = false;
-  bool isPasswordVisible = true;
-  bool isRepeatpasswordVisible = false;
+  bool isPasswordVisible = false;
+  bool isRepeatPasswordVisible = false;
 
   String? passwordValue;
-  String? repeatpasswordValue;
+  String? repeatPasswordValue;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomTextFormField(
                     controller: _firstnameController,
                     focusNode: _firstnameFocusNode,
-                    validator: (firstnamevalue) => firstnamevalue!.isEmpty
+                    validator: (firstNameValue) => firstNameValue!.isEmpty
                         ? 'Please Enter Your First name'
                         : null,
                     onEditingComplete: () =>
@@ -96,7 +96,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     labelText: 'First name',
                     obscureText: false,
-                    textInputType: TextInputType.emailAddress,
+                    textInputType: TextInputType.text,
                   ),
                   /*
                   =========================================
@@ -114,7 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomTextFormField(
                     controller: _lastnameController,
                     focusNode: _lastnameFocusNode,
-                    validator: (lastnamevalue) => lastnamevalue!.isEmpty
+                    validator: (lastNameValue) => lastNameValue!.isEmpty
                         ? 'Please Enter Your Last name'
                         : null,
                     onEditingComplete: () =>
@@ -122,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     labelText: 'Last name',
                     obscureText: false,
-                    textInputType: TextInputType.emailAddress,
+                    textInputType: TextInputType.text,
                   ),
                   /*
                   =========================================
@@ -140,10 +140,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomTextFormField(
                     controller: _emailController,
                     focusNode: _emailFocusNode,
-                    validator: (emailvalue) {
-                      if (emailvalue!.isEmpty ||
+                    validator: (emailValue) {
+                      if (emailValue!.isEmpty ||
                           !RegExp(r'^[\w-\.]+@([\w-]+\.)+\w{2,4}')
-                              .hasMatch(emailvalue)) {
+                              .hasMatch(emailValue)) {
                         return 'Enter correct Email';
                       } else {
                         return null;
@@ -172,14 +172,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomTextFormField(
                     controller: _phoneController,
                     focusNode: _phoneFocusNode,
-                    validator: (phonevalue) =>
-                        phonevalue!.isEmpty ? 'Please Enter Your Phone' : null,
+                    validator: (phoneValue) =>
+                        phoneValue!.isEmpty ? 'Please Enter Your Phone' : null,
                     onEditingComplete: () =>
                         FocusScope.of(context).requestFocus(_passwordFocusNode),
                     textInputAction: TextInputAction.next,
                     labelText: 'Phone',
                     obscureText: false,
-                    textInputType: TextInputType.emailAddress,
+                    textInputType: TextInputType.phone,
                   ),
                   /*
                   =========================================
@@ -197,22 +197,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomTextFormField(
                     controller: _passwordController,
                     focusNode: _passwordFocusNode,
-                    validator: (passwordval) {
-                      passwordValue = passwordval;
-                      if (passwordval!.isEmpty ||
+                    validator: (passwordVal) {
+                      passwordValue = passwordVal;
+                      if (passwordVal!.isEmpty ||
                           !RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
-                              .hasMatch(passwordval)) {
+                              .hasMatch(passwordVal)) {
                         return 'Enter correct password';
                       } else {
                         return null;
                       }
                     },
                     onEditingComplete: () => FocusScope.of(context)
-                        .requestFocus(_repeatpasswordFocusNode),
+                        .requestFocus(_repeatPasswordFocusNode),
                     textInputAction: TextInputAction.next,
                     labelText: 'Password',
                     obscureText: isPasswordVisible ? false : true,
-                    textInputType: TextInputType.emailAddress,
+                    textInputType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
                       icon: isPasswordVisible
                           ? const Icon(Icons.visibility)
@@ -238,29 +238,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   =========================================
                   */
                   CustomTextFormField(
-                    controller: _repeatpasswordController,
-                    focusNode: _repeatpasswordFocusNode,
+                    controller: _repeatPasswordController,
+                    focusNode: _repeatPasswordFocusNode,
                     textInputAction: TextInputAction.done,
-                    validator: (repeatpasswordval) {
-                      repeatpasswordValue = repeatpasswordval;
-                      if (repeatpasswordval!.isEmpty) {
+                    validator: (repeatPasswordVal) {
+                      repeatPasswordValue = repeatPasswordVal;
+                      if (repeatPasswordVal!.isEmpty) {
                         return 'Please Enter Your Repeat Password';
-                      } else if (passwordValue != repeatpasswordValue) {
+                      } else if (passwordValue != repeatPasswordValue) {
                         return 'Password not match';
                       } else {
                         return null;
                       }
                     },
                     labelText: 'Repeat Password',
-                    obscureText: isRepeatpasswordVisible ? false : true,
-                    textInputType: TextInputType.emailAddress,
+                    obscureText: isRepeatPasswordVisible ? false : true,
+                    textInputType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
-                      icon: isRepeatpasswordVisible
+                      icon: isRepeatPasswordVisible
                           ? const Icon(Icons.visibility)
                           : const Icon(Icons.visibility_off),
                       onPressed: () {
                         setState(() {
-                          isRepeatpasswordVisible = !isRepeatpasswordVisible;
+                          isRepeatPasswordVisible = !isRepeatPasswordVisible;
                         });
                       },
                     ),

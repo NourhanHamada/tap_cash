@@ -7,13 +7,13 @@ class CustomTextFormField extends StatelessWidget {
       this.suffixIcon,
       this.onEditingComplete,
       this.border,
-      required this.textInputAction,
-      required this.validator,
+       this.textInputAction,
+       this.validator,
       required this.focusNode,
       required this.labelText,
       required this.textInputType,
       required this.obscureText,
-      required this.controller})
+       required this.controller})
       : super(key: key);
 
   final String labelText;
