@@ -25,7 +25,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     bool seen = preferences.getBool('seen') ?? false ;
     if(seen){
-      GoRouter.of(context).push(AppRouter.homeScreen);
+      GoRouter.of(context).push(AppRouter.layout);
     }else {
       await preferences.setBool('seen', true);
     }

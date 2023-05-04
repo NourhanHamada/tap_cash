@@ -2,10 +2,32 @@
 class Assets {
   Assets._();
 
+  static const String iconsAdd = 'assets/icons/add.png';
   static const String iconsAppLogo = 'assets/icons/app_logo.png';
   static const String iconsAppLogoLight = 'assets/icons/app_logo_light.png';
-  static const String iconsImg = 'assets/icons/logo2.png';
+  static const String iconsArrow = 'assets/icons/arrow.png';
+  static const String iconsBank = 'assets/icons/bank.png';
+  static const String iconsBankFilled = 'assets/icons/bank_filled.png';
+  static const String iconsCard = 'assets/icons/card.png';
+  static const String iconsChildsMoney = 'assets/icons/childs_money.png';
+  static const String iconsCord = 'assets/icons/cord.png';
+  static const String iconsDepts = 'assets/icons/depts.png';
+  static const String iconsDonations = 'assets/icons/donations.png';
+  static const String iconsFingerPrint = 'assets/icons/finger_print.png';
+  static const String iconsHistory = 'assets/icons/history.png';
+  static const String iconsHistoryFilled = 'assets/icons/history_filled.png';
+  static const String iconsHousesMoney = 'assets/icons/houses_money.png';
+  static const String iconsImg = 'assets/icons/menu.png';
   static const String iconsLogo = 'assets/icons/logo.png';
+  static const String iconsLogo2 = 'assets/icons/logo2.png';
+  static const String iconsNew = 'assets/icons/new.png';
+  static const String iconsTansfer = 'assets/icons/tansfer.png';
+  static const String iconsTransferFilled = 'assets/icons/transfer_filled.png';
+  static const String iconsUser = 'assets/icons/user.png';
+  static const String iconsUserFilled = 'assets/icons/user_filled.png';
+  static const String iconsWallet = 'assets/icons/wallet.png';
+  static const String iconsWannaThank = 'assets/icons/wanna_thank.png';
+  static const String iconsWannaThank2 = 'assets/icons/wanna_thank2.png';
   static const String imagesKey = 'assets/images/key.png';
 
 }
