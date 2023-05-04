@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tap_cash/controller/database/web_services/dio_helper.dart';
 import 'app_routes.dart';
+import 'constants/colors.dart';
 import 'controller/database/local/shared_preferences_helper.dart';
 
 void main() async{
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-  //   statusBarIconBrightness: Brightness.dark,
-  //   statusBarColor: MyColors.mainColor,
-  // ));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+    statusBarIconBrightness: Brightness.dark,
+    statusBarColor: MyColors.white,
+  ));
   // To Run ScreenUtilInit package.
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize DioHelper and CashHelper to run.
   await DioHelper.init();
   await SharedHelper.sharedInitialize();
-
   runApp(const TapCash());
 }
 
