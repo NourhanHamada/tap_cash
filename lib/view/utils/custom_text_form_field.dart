@@ -9,6 +9,8 @@ class CustomTextFormField extends StatelessWidget {
       this.border,
        this.textInputAction,
        this.validator,
+        this.textStyle,
+        this.inputFormatter,
       required this.focusNode,
       required this.labelText,
       required this.textInputType,
@@ -26,6 +28,8 @@ class CustomTextFormField extends StatelessWidget {
   String? Function(String?)? validator;
   TextInputAction? textInputAction;
   InputBorder? border;
+   var textStyle;
+   var inputFormatter;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,9 @@ class CustomTextFormField extends StatelessWidget {
           label: Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Text(labelText),
-          )),
+          ),
+        labelStyle: textStyle,
+      ),
     );
   }
 }
