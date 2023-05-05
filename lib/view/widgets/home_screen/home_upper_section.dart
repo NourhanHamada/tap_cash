@@ -15,14 +15,14 @@ class HomeUpperSection extends StatelessWidget {
         CustomRoundedCard(
           icon: MyIcons.add,
           text: 'Add Money',
-          color: MyColors.babyBlue,
+          color: MyColors.mentGreen,
           fontWeight: FontWeight.w600,
           iconWidth: 32,
         ),
         CustomRoundedCard(
           icon: MyIcons.arrow,
           text: 'Send money',
-          color: MyColors.babyBlue,
+          color: MyColors.mentGreen,
           fontWeight: FontWeight.w600,
           iconWidth: 32,
         ),

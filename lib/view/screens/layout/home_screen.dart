@@ -14,29 +14,44 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.symmetric(vertical: 24),
         child: ListView(
           children: [
-            const HomeCustomAppBar(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: HomeCustomAppBar(),
+            ),
             const SizedBox(
               height: 10,
             ),
-            const HomeUpperSection(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: HomeUpperSection(),
+            ),
             const SizedBox(
               height: 10,
             ),
-            HomeGridView(),
-            const SizedBox(
-              height: 30,
-            ),
-            const HomeMiddleSectionCard(
-              icon: MyIcons.wannaThank2,
-              text: 'Wanna send thank!',
+            Padding(
+              padding: const EdgeInsets.only(left: 24),
+              child: HomeGridView(),
             ),
             const SizedBox(
               height: 30,
             ),
-            const HomeLowerSection(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: HomeMiddleSectionCard(
+                icon: MyIcons.wannaThank2,
+                text: 'Wanna send thank!',
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: HomeLowerSection(),
+            ),
           ],
         ),
       ),
@@ -51,10 +66,12 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: MyColors.white,
-        child:  Padding(
+        child: Padding(
           padding: const EdgeInsets.all(2.0),
-          child:  Center(
-            child: Image.asset(MyIcons.ask, width: 32,
+          child: Center(
+            child: Image.asset(
+              MyIcons.ask,
+              width: 32,
             ),
           ),
         ),
