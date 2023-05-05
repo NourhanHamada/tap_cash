@@ -24,6 +24,7 @@ class MyIcons{
   static const String add = 'assets/icons/add.png';
   static const String arrow = 'assets/icons/arrow.png';
   static const String menu = 'assets/icons/menu.png';
+  static const String ask = 'assets/icons/ask.png';
 
 
 

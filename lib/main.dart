@@ -6,7 +6,7 @@ import 'app_routes.dart';
 import 'constants/colors.dart';
 import 'controller/database/local/shared_preferences_helper.dart';
 
-void main() async{
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
     statusBarIconBrightness: Brightness.dark,
     statusBarColor: MyColors.white,
@@ -32,8 +32,8 @@ class TapCash extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primaryColor: MyColors.mainColor
-             ),
+            primaryColor: MyColors.mainColor,
+          ),
           routerConfig: AppRouter.router,
         );
       },

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tap_cash/constants/colors.dart';
 import 'package:tap_cash/constants/icons.dart';
-import 'package:tap_cash/view/utils/custom_rounded_card.dart';
 import 'package:tap_cash/view/widgets/home_screen/home_grid_view.dart';
 import '../../utils/home_middle_card.dart';
 import '../../widgets/home_screen/Home_custom_app_bar.dart';
@@ -15,30 +14,49 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.all(24),
         child: ListView(
-          children: const [
-            HomeCustomAppBar(),
-            SizedBox(
+          children: [
+            const HomeCustomAppBar(),
+            const SizedBox(
               height: 10,
             ),
-            HomeUpperSection(),
-            SizedBox(
+            const HomeUpperSection(),
+            const SizedBox(
               height: 10,
             ),
             HomeGridView(),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            HomeMiddleSectionCard(
+            const HomeMiddleSectionCard(
               icon: MyIcons.wannaThank2,
               text: 'Wanna send thank!',
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            HomeLowerSection(),
+            const HomeLowerSection(),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(
+            color: MyColors.mainColor,
+          ),
+          borderRadius: BorderRadius.circular(
+            100,
+          ),
+        ),
+        backgroundColor: MyColors.white,
+        child:  Padding(
+          padding: const EdgeInsets.all(2.0),
+          child:  Center(
+            child: Image.asset(MyIcons.ask, width: 32,
+            ),
+          ),
         ),
       ),
     );

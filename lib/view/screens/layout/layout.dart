@@ -28,6 +28,7 @@ class _LayOutState extends State<LayOut> {
               onTap: (index) {
                 cubit.changeIndex(index);
               },
+              unselectedItemColor: MyColors.mainColor,
               selectedItemColor: MyColors.mainColor,
               selectedLabelStyle: const TextStyle(
                 fontWeight: FontWeight.w500,

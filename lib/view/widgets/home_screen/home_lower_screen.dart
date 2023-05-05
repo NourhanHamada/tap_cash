@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/icons.dart';
 import '../../../constants/styles.dart';
 
-class HomeLowerSection extends StatelessWidget {
+class HomeLowerSection extends StatefulWidget {
   const HomeLowerSection({Key? key}) : super(key: key);
+
+  @override
+  State<HomeLowerSection> createState() => _HomeLowerSectionState();
+}
+
+class _HomeLowerSectionState extends State<HomeLowerSection> {
+
+  final List<String> texts = [
+    'How to save electricity?',
+    'How to save electricity?',
+    'How to save electricity?',
+  ];
+  final List<String> icons = [
+    MyIcons.cord,
+    MyIcons.cord,
+    MyIcons.cord,
+  ];
+  var pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +37,10 @@ class HomeLowerSection extends StatelessWidget {
               'FAQs',
               style: MyStyles.textStyle20.copyWith(fontWeight: FontWeight.w600),
             ),
-            Text('All', style: MyStyles.textStyle16.copyWith(color: MyColors.grey),)
+            Text(
+              'All',
+              style: MyStyles.textStyle16.copyWith(color: MyColors.grey, fontWeight: FontWeight.bold),
+            )
           ],
         ),
         const SizedBox(
@@ -25,96 +48,51 @@ class HomeLowerSection extends StatelessWidget {
         ),
         SizedBox(
           height: 200,
-          child: ListView(
+          child: PageView.builder(
+            controller: pageController,
+            itemCount: texts.length,
             physics: const ScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width - 80,
-                    height: 185,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: MyColors.babyBlue, width: 5)
-                    ),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('How to save electricity?', style: MyStyles.textStyle20,),
-                          Image.asset(MyIcons.cord, width: 30,)
-                        ],
+            // shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                height: 185,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: MyColors.babyBlue, width: 5)),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                       Text(
+                        texts[index],
+                        style: MyStyles.textStyle20,
                       ),
-                    ),
+                      Image.asset(
+                        icons[index],
+                        width: 30,
+                      )
+                    ],
                   ),
-                  Positioned(
-                    left: 10,
-                    bottom: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: MyColors.white,
-                        borderRadius: BorderRadius.circular(200),
-                        border: Border.all(color: MyColors.mainColor,),
-                      ),
-                      width: 53,
-                      height: 53,
-                      child: const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(2.0),
-                          child: Text('Ask us'),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Stack(
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width - 80,
-                    height: 185,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: MyColors.babyBlue, width: 5)
-                    ),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('How to save electricity?', style: MyStyles.textStyle20,),
-                          Image.asset(MyIcons.cord, width: 30,)
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 10,
-                    bottom: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(200),
-                        border: Border.all(color: MyColors.mainColor,),
-                      ),
-                      width: 53,
-                      height: 53,
-                      child: const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(2.0),
-                          child: Text('Ask us'),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+                ),
+              );
+            },
           ),
-        )
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        SmoothPageIndicator(
+          controller: pageController,
+          count: texts.length,
+          effect: ExpandingDotsEffect(
+            activeDotColor: MyColors.babyBlue,
+            dotColor: MyColors.grey.withOpacity(.4),
+            dotHeight: 3.0.w,
+            dotWidth: 3.0.h,
+          ),
+        ),
       ],
     );
   }

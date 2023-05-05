@@ -25,26 +25,23 @@ class HomeMiddleSectionCard extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  icon,
-                  width: 40,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: MyStyles.textStyle16.copyWith(
-                      color: MyColors.mainColor, fontWeight: FontWeight.w600),
-                )
-              ],
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                icon,
+                width: 40,
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Text(
+                text,
+                textAlign: TextAlign.center,
+                style: MyStyles.textStyle16.copyWith(
+                    color: MyColors.mainColor, fontWeight: FontWeight.w600),
+              )
+            ],
           ),
         ),
         Container(
