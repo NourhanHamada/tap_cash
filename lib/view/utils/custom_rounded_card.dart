@@ -30,7 +30,7 @@ class CustomRoundedCard extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(200),
             ),
-            elevation: 6,
+            // elevation: 6,
             child: SizedBox(
               width: 80,
               height: 80,

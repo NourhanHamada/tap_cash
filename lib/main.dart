@@ -7,10 +7,10 @@ import 'constants/colors.dart';
 import 'controller/database/local/shared_preferences_helper.dart';
 
 void main() async {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-    statusBarIconBrightness: Brightness.dark,
-    statusBarColor: MyColors.white,
-  ));
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+  //   statusBarIconBrightness: Brightness.light,
+  //   statusBarColor: MyColors.white,
+  // ));
   // To Run ScreenUtilInit package.
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize DioHelper and CashHelper to run.

@@ -6,6 +6,8 @@ class Assets {
   static const String iconsAppLogo = 'assets/icons/app_logo.png';
   static const String iconsAppLogoLight = 'assets/icons/app_logo_light.png';
   static const String iconsArrow = 'assets/icons/arrow.png';
+  static const String iconsArrowBack = 'assets/icons/arrow_back.png';
+  static const String iconsAsk = 'assets/icons/ask.png';
   static const String iconsBank = 'assets/icons/bank.png';
   static const String iconsBankFilled = 'assets/icons/bank_filled.png';
   static const String iconsCard = 'assets/icons/card.png';
@@ -17,7 +19,7 @@ class Assets {
   static const String iconsHistory = 'assets/icons/history.png';
   static const String iconsHistoryFilled = 'assets/icons/history_filled.png';
   static const String iconsHousesMoney = 'assets/icons/houses_money.png';
-  static const String iconsImg = 'assets/icons/ask.png';
+  static const String iconsImg = 'assets/icons/lets_go.png';
   static const String iconsLogo = 'assets/icons/logo.png';
   static const String iconsLogo2 = 'assets/icons/logo2.png';
   static const String iconsMenu = 'assets/icons/menu.png';
@@ -29,6 +31,13 @@ class Assets {
   static const String iconsWallet = 'assets/icons/wallet.png';
   static const String iconsWannaThank = 'assets/icons/wanna_thank.png';
   static const String iconsWannaThank2 = 'assets/icons/wanna_thank2.png';
+  static const String imagesAdultWithBaby = 'assets/images/adult_with_baby.png';
+  static const String imagesDebts = 'assets/images/debts.png';
   static const String imagesKey = 'assets/images/key.png';
+  static const String imagesMoney = 'assets/images/money.png';
+  static const String imagesSendMoney = 'assets/images/send_money.png';
+  static const String imagesSmardCard = 'assets/images/smard_card.png';
+  static const String imagesSmartCardBlue = 'assets/images/smart_card_blue.png';
+  static const String imagesWallet = 'assets/images/wallet.png';
 
 }

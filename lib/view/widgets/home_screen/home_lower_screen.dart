@@ -88,7 +88,7 @@ class _HomeLowerSectionState extends State<HomeLowerSection> {
           count: texts.length,
           effect: ExpandingDotsEffect(
             activeDotColor: MyColors.babyBlue,
-            dotColor: MyColors.grey.withOpacity(.4),
+            dotColor: MyColors.lightGrey,
             dotHeight: 3.0.w,
             dotWidth: 3.0.h,
           ),
