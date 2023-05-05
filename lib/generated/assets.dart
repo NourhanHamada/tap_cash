@@ -17,9 +17,10 @@ class Assets {
   static const String iconsHistory = 'assets/icons/history.png';
   static const String iconsHistoryFilled = 'assets/icons/history_filled.png';
   static const String iconsHousesMoney = 'assets/icons/houses_money.png';
-  static const String iconsImg = 'assets/icons/menu.png';
+  static const String iconsImg = 'assets/icons/ask.png';
   static const String iconsLogo = 'assets/icons/logo.png';
   static const String iconsLogo2 = 'assets/icons/logo2.png';
+  static const String iconsMenu = 'assets/icons/menu.png';
   static const String iconsNew = 'assets/icons/new.png';
   static const String iconsTansfer = 'assets/icons/tansfer.png';
   static const String iconsTransferFilled = 'assets/icons/transfer_filled.png';

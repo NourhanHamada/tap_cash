@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_cash/constants/colors.dart';
 
 import '../../constants/styles.dart';
 
@@ -21,7 +22,7 @@ class CustomRoundedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.only(right: 10),
       child: Column(
         children: [
           Card(
@@ -29,7 +30,7 @@ class CustomRoundedCard extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(200),
             ),
-            elevation: 7,
+            elevation: 6,
             child: SizedBox(
               width: 80,
               height: 80,
@@ -50,6 +51,7 @@ class CustomRoundedCard extends StatelessWidget {
               textAlign: TextAlign.center,
               style: MyStyles.textStyle16.copyWith(
                 fontWeight: fontWeight,
+                color: MyColors.mainColor
               ),
             ),
           ),
