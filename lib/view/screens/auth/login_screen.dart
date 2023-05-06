@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tap_cash/app_routes.dart';
 import 'package:tap_cash/constants/colors.dart';
 import 'package:tap_cash/constants/images.dart';
@@ -29,10 +30,43 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordFocusNode = FocusNode();
   final _repeatPasswordFocusNode = FocusNode();
   bool isChecked = false;
-  bool isPasswordVisible = true;
+  bool isPasswordVisible = false;
   bool isRepeatPasswordVisible = false;
   String? email;
   String? password;
+  late bool _rememberMe = false;
+
+  @override
+  void initState() {
+    _getRememberMe();
+    super.initState();
+  }
+
+  _getRememberMe() async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      _rememberMe = preferences.getBool('rememberMe') ?? false;
+      if(_rememberMe){
+        _emailController.text = preferences.getString('email') ?? '';
+        _passwordController.text = preferences.getString('password') ?? '' ;
+      }
+    });
+  }
+
+  _saveRememberMe(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('rememberMe', value);
+    if (!value) {
+      await prefs.remove('email');
+      await prefs.remove('password');
+    }
+  }
+
+  _saveCredentials() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('email', _emailController.text);
+    await prefs.setString('password', _passwordController.text);
+  }
 
   @override
   void dispose() {
@@ -145,6 +179,41 @@ class _LoginScreenState extends State<LoginScreen> {
                             setState(() {
                               isPasswordVisible = !isPasswordVisible;
                             });
+                      textInputType: TextInputType.visiblePassword,
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // <<<<<<< HEAD
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: _rememberMe,
+                              onChanged: (value) {
+                                isChecked = value!;
+                                setState(() {
+                                  _rememberMe = value!;
+                                  _saveRememberMe(value);
+                                });
+                              },
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.padded,
+                              visualDensity: VisualDensity.compact,
+                            ),
+                            Text(
+                              'Remember me',
+                              style: MyStyles.textStyle14
+                                  .copyWith(color: MyColors.mainColor),
+                            ),
+                          ],
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            GoRouter.of(context)
+                                .pushReplacement(AppRouter.newPassword);
                           },
                         ),
                         textInputType: TextInputType.visiblePassword,
@@ -238,17 +307,54 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
+              ),
+/*
+                  ===========================
+                  = The Login Button Starts
+                  ===========================
+                  */
+              MainButton(
+                  text: "Login",
+                  onPressed: () {
+                    _saveCredentials();
+                    if (_formKey.currentState!.validate()) {
+                      // _submit(model);
+                    }
+                  }),
+              /*
+                  ========================
+                   = The Login Button Ends
+                  ========================
+                  */
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Don\'t have an account, ',
+                    style: MyStyles.textStyle14.copyWith(color: MyColors.grey),
+                  ),
+                  InkWell(
+                    onTap: () => GoRouter.of(context)
+                        .pushReplacement(AppRouter.signupScreen),
+                    child: Text(
+                      "Sign Up ?",
+                      style: MyStyles.textStyle14.copyWith(
+                          color: MyColors.mainColor,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
-
-
-
-// TO DO :
-// Remember Me
 
 
   // Future<void> _login(AuthController model) async {

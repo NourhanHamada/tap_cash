@@ -8,4 +8,7 @@ class MyColors {
   static const Color babyBlue = Color(0xff9FE8FA);
   static const Color grey = Color(0xff869AAC);
   static const Color green = Color(0xffA6D856);
+  static const Color mentGreen = Color(0xffCFF4FD);
+  static const Color lightGrey = Color(0xffEAEEF1);
+  static const Color red = Color(0xffEB5644);
 }

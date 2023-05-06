@@ -5,8 +5,9 @@ import 'package:tap_cash/app_routes.dart';
 import 'package:tap_cash/constants/colors.dart';
 import 'package:tap_cash/constants/images.dart';
 import 'package:tap_cash/constants/styles.dart';
-import 'package:tap_cash/view/utils/custom_text_form_field.dart';
 import 'package:tap_cash/view/utils/main_button.dart';
+
+import '../../utils/custom_text_field.dart';
 
 class OTPScreen extends StatefulWidget {
   const OTPScreen({super.key});
@@ -28,26 +29,7 @@ class _OTPScreenState extends State<OTPScreen> {
   final _fourFocusNode = FocusNode();
   final _fiveFocusNode = FocusNode();
 
-  String? UserEmail = " najwaA99@gmail.com";
-
-  Widget otpTextField({controller, focusNode, validator}) {
-    return SizedBox(
-        height: 50,
-        width: 50,
-        child: CustomTextFormField(
-          controller: controller,
-          focusNode: focusNode,
-          validator: validator,
-          textInputAction: TextInputAction.next,
-          obscureText: false,
-          labelText: "",
-          textInputType: TextInputType.number,
-          border: OutlineInputBorder(
-            borderSide: const BorderSide(width: 2, color: MyColors.babyBlue),
-            borderRadius: BorderRadius.circular(7.5),
-          ),
-        ));
-  }
+  String? userEmail = " najwaA99@gmail.com";
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +95,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   =========================================
                   */
                   Text(
-                    'Please enter 5- digit OTP sent to your Email $UserEmail',
+                    'Please enter 5- digit OTP sent to your Email $userEmail',
                     style: MyStyles.textStyle20
                         .copyWith(color: MyColors.mainColor),
                   ),
@@ -127,38 +109,44 @@ class _OTPScreenState extends State<OTPScreen> {
                   =========================================
                   */
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      otpTextField(
+                      CustomTextField(
                         controller: _oneController,
-                        focusNode: _oneFocusNode,
-                        validator: (oneValue) =>
-                            oneValue!.isEmpty ? 'Enter First Digit' : null,
+                      focusNode: _oneFocusNode,
+                        validator: (oneValue){
+                          oneValue!.isEmpty ? 'Enter First Digit' : null;
+                        },
                       ),
-                      otpTextField(
+                      CustomTextField(
                         controller: _twoController,
-                        focusNode: _twoFocusNode,
-                        validator: (twoValue) =>
-                            twoValue!.isEmpty ? 'Enter Second Digit' : null,
+                      focusNode: _twoFocusNode,
+                        validator: (twoValue){
+                          twoValue!.isEmpty ? 'Enter Second Digit' : null;
+                        },
                       ),
-                      otpTextField(
+                      CustomTextField(
                         controller: _threeController,
                         focusNode: _threeFocusNode,
-                        validator: (threeValue) =>
-                            threeValue!.isEmpty ? 'Enter Third Digit' : null,
+                        validator: (threeValue){
+                          threeValue!.isEmpty ? 'Enter Third Digit' : null;
+                        },
                       ),
-                      otpTextField(
+                      CustomTextField(
                         controller: _fourController,
                         focusNode: _fourFocusNode,
-                        validator: (fourValue) =>
-                            fourValue!.isEmpty ? 'Enter First Digit' : null,
+                        validator: (fourValue){
+                          fourValue!.isEmpty ? 'Enter Fourth Digit' : null;
+                        },
                       ),
-                      otpTextField(
+                      CustomTextField(
                         controller: _fiveController,
                         focusNode: _fiveFocusNode,
-                        validator: (fiveValue) =>
-                            fiveValue!.isEmpty ? 'Enter First Digit' : null,
+                        validator: (fiveValue){
+                          fiveValue!.isEmpty ? 'Enter Fifth Digit' : null;
+                        },
                       ),
+
                     ],
                   ),
 
@@ -197,4 +185,6 @@ class _OTPScreenState extends State<OTPScreen> {
       ),
     );
   }
+
+
 }
