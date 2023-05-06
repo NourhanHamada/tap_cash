@@ -51,6 +51,7 @@ dependencies:
   card_swiper:
   flutter_rating_bar:
   go_router: ^6.5.7
+  another_flushbar: ^1.12.29
   flutter_animation_progress_bar:
   flutter_launcher_icons:
   camera: ^0.10.5

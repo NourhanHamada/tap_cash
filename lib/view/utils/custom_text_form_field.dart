@@ -12,10 +12,12 @@ class CustomTextFormField extends StatelessWidget {
         this.textStyle,
         this.inputFormatter,
       required this.focusNode,
+      this.onChanged,
+      this.onSaved,
       required this.labelText,
       required this.textInputType,
       required this.obscureText,
-       required this.controller})
+      required this.controller})
       : super(key: key);
 
   final String labelText;
@@ -28,6 +30,8 @@ class CustomTextFormField extends StatelessWidget {
   String? Function(String?)? validator;
   TextInputAction? textInputAction;
   InputBorder? border;
+  void Function(String)? onChanged;
+  void Function(String?)? onSaved;
    var textStyle;
    var inputFormatter;
 
@@ -41,6 +45,8 @@ class CustomTextFormField extends StatelessWidget {
       textInputAction: textInputAction,
       keyboardType: textInputType,
       obscureText: obscureText,
+      onSaved: onSaved,
+      onChanged: onChanged,
       decoration: InputDecoration(
           suffixIcon: suffixIcon,
           border: border ??

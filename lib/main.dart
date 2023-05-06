@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tap_cash/controller/database/web_services/dio_helper.dart';
+import 'package:tap_cash/providers/auth_provider.dart';
+import 'package:tap_cash/providers/user_provider.dart';
 import 'app_routes.dart';
 import 'constants/colors.dart';
 import 'controller/database/local/shared_preferences_helper.dart';
+import 'package:provider/provider.dart';
 
-void main() async {
+Future<void> main() async {
   // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
   //   statusBarIconBrightness: Brightness.light,
   //   statusBarColor: MyColors.white,
@@ -16,7 +19,12 @@ void main() async {
   // Initialize DioHelper and CashHelper to run.
   await DioHelper.init();
   await SharedHelper.sharedInitialize();
-  runApp(const TapCash());
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => AuthProvider()),
+      // ChangeNotifierProvider(create: (_) => UserProvider()),
+    ], child: const TapCash()),
+  );
 }
 
 class TapCash extends StatelessWidget {

@@ -5,8 +5,11 @@ import 'package:tap_cash/app_routes.dart';
 import 'package:tap_cash/constants/colors.dart';
 import 'package:tap_cash/constants/images.dart';
 import 'package:tap_cash/constants/styles.dart';
+import 'package:tap_cash/providers/auth_provider.dart';
 import 'package:tap_cash/view/utils/custom_text_form_field.dart';
 import 'package:tap_cash/view/utils/main_button.dart';
+import 'package:provider/provider.dart';
+import 'package:another_flushbar/flushbar.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({super.key});
@@ -19,9 +22,35 @@ class _VerificationScreenState extends State<VerificationScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _emailFocusNode = FocusNode();
+  String? email;
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthProvider>(context);
+    void register() {
+      final form = _formKey.currentState;
+      if (form!.validate()) {
+        form.save();
+        auth.verification(email).then((respose) {
+          if (respose['status']) {
+            GoRouter.of(context).pushReplacement(AppRouter.otpScreen);
+          } else {
+            Flushbar(
+                    title: "Registered Failed",
+                    message: respose.toString(),
+                    duration: const Duration(seconds: 100))
+                .show(context);
+          }
+        });
+      } else {
+        Flushbar(
+                title: "Invalid Form",
+                message: 'please complete the form properly',
+                duration: const Duration(seconds: 100))
+            .show(context);
+      }
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -107,6 +136,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       } else {
                         return null;
                       }
+                    },
+                    onSaved: (emailValue) {
+                      email = emailValue;
                     },
                     textInputAction: TextInputAction.done,
                     labelText: 'Email',
