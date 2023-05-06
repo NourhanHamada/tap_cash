@@ -22,14 +22,6 @@ class OnBoardScreen extends StatefulWidget {
 class _OnBoardScreenState extends State<OnBoardScreen> {
   var pageController = PageController();
   int currentIndex = 0;
-  List<String> leading = [
-    MyIcons.letsGo,
-    MyIcons.arrowBack,
-    MyIcons.arrowBack,
-    MyIcons.arrowBack,
-    MyIcons.arrowBack,
-    MyIcons.arrowBack,
-  ];
   List<String> titles = [
     'Smart wallet',
     'Smart Card',
@@ -86,6 +78,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                 SizedBox(
                   height: 600.h,
                   child: PageView.builder(
+                    itemCount: text.length,
                     controller: pageController,
                     onPageChanged: (index) {
                       setState(() {
@@ -99,10 +92,17 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Image.asset(
-                                leading[index],
-                                width: index == 0 ? 70 : 24,
-                              ),
+                              index == 0
+                                  ? Text(
+                                      'Let\'s go',
+                                      style: MyStyles.textStyle20.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    )
+                                  : Image.asset(
+                                      MyIcons.arrowBack,
+                                      width: 24,
+                                    ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -188,12 +188,3 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
 }
 
 // To Do - -> Don't forget to call a _checkIfSeen function !!!!
-
-
-// 132
-//80
-//260
-//40
-//30
-// 8
-// 120
