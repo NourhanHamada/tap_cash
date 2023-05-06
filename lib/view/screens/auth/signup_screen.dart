@@ -1,11 +1,16 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tap_cash/app_routes.dart';
 import 'package:tap_cash/constants/colors.dart';
 import 'package:tap_cash/constants/styles.dart';
+import 'package:tap_cash/models/user_models.dart';
+import 'package:tap_cash/providers/auth_provider.dart';
+import 'package:tap_cash/providers/user_provider.dart';
 import 'package:tap_cash/view/utils/custom_text_form_field.dart';
 import 'package:tap_cash/view/utils/main_button.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -31,13 +36,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool isChecked = false;
   bool isPasswordVisible = false;
   bool isRepeatPasswordVisible = false;
-
+  String? name;
+  String? email;
+  String? password;
   String? passwordValue;
   String? repeatPasswordValue;
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthProvider>(context);
+    void register() {
+      final form = _formKey.currentState;
+      if (form!.validate() && isChecked == true) {
+        form.save();
+        auth.register(name, email, password).then((respose) {
+          if (respose['status']) {
+            User user = respose['data'];
+            GoRouter.of(context).pushReplacement(AppRouter.verificationScreen);
+          } else {
+            Flushbar(
+                    title: "Registered Failed",
+                    message: respose.toString(),
+                    duration: const Duration(seconds: 100))
+                .show(context);
+          }
+        });
+      } else {
+        Flushbar(
+                title: "Invalid Form",
+                message: 'please complete the form properly',
+                duration: const Duration(seconds: 100))
+            .show(context);
+      }
+    }
+
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(30.0),
@@ -48,10 +82,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   /*
-                  =========================================
-                  = Sign up Screen Header Start
-                  =========================================
-                  */
+                      =========================================
+                      = Sign up Screen Header Start
+                      =========================================
+                      */
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -66,31 +100,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             color: MyColors.blue,
                           )),
                       Text(
-                        'Sign up ',
+                        'Sign up',
                         style: MyStyles.textStyle20
                             .copyWith(color: MyColors.mainColor),
                       ),
                     ],
                   ),
                   /*
-                  =========================================
-                  = Sign up Screen Header Start
-                  =========================================
-                  */
+                      =========================================
+                      = Sign up Screen Header Start
+                      =========================================
+                      */
                   SizedBox(
                     height: 30.h,
                   ),
                   /*
-                  =========================================
-                  = First name Start
-                  =========================================
-                  */
+                      =========================================
+                      = First name Start
+                      =========================================
+                      */
                   CustomTextFormField(
                     controller: _firstnameController,
                     focusNode: _firstnameFocusNode,
                     validator: (firstNameValue) => firstNameValue!.isEmpty
                         ? 'Please Enter Your First name'
                         : null,
+                    onSaved: (namevalue) {
+                      name = namevalue;
+                    },
                     onEditingComplete: () =>
                         FocusScope.of(context).requestFocus(_lastnameFocusNode),
                     textInputAction: TextInputAction.next,
@@ -99,18 +136,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputType: TextInputType.text,
                   ),
                   /*
-                  =========================================
-                  = First name End
-                  =========================================
-                  */
+                      =========================================
+                      = First name End
+                      =========================================
+                      */
                   SizedBox(
                     height: 20.h,
                   ),
                   /*
-                  =========================================
-                  = Last name Start
-                  =========================================
-                  */
+                      =========================================
+                      = Last name Start
+                      =========================================
+                      */
                   CustomTextFormField(
                     controller: _lastnameController,
                     focusNode: _lastnameFocusNode,
@@ -125,29 +162,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputType: TextInputType.text,
                   ),
                   /*
-                  =========================================
-                  = Last name End
-                  =========================================
-                  */
+                      =========================================
+                      = Last name End
+                      =========================================
+                      */
                   SizedBox(
                     height: 20.h,
                   ),
                   /*
-                  =========================================
-                  = Email Start
-                  =========================================
-                  */
+                      =========================================
+                      = Email Start
+                      =========================================
+                      */
                   CustomTextFormField(
                     controller: _emailController,
                     focusNode: _emailFocusNode,
                     validator: (emailValue) {
-                      if (emailValue!.isEmpty ||
-                          !RegExp(r'^[\w-\.]+@([\w-]+\.)+\w{2,4}')
-                              .hasMatch(emailValue)) {
+                      if (emailValue!.isEmpty) {
                         return 'Enter correct Email';
                       } else {
                         return null;
                       }
+                    },
+                    onSaved: (emailValue) {
+                      email = emailValue;
                     },
                     onEditingComplete: () =>
                         FocusScope.of(context).requestFocus(_phoneFocusNode),
@@ -157,18 +195,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputType: TextInputType.emailAddress,
                   ),
                   /*
-                  =========================================
-                  = Email End
-                  =========================================
-                  */
+                      =========================================
+                      = Email End
+                      =========================================
+                      */
                   SizedBox(
                     height: 20.h,
                   ),
                   /*
-                  =========================================
-                  = Phone Start
-                  =========================================
-                  */
+                      =========================================
+                      = Phone Start
+                      =========================================
+                      */
                   CustomTextFormField(
                     controller: _phoneController,
                     focusNode: _phoneFocusNode,
@@ -182,26 +220,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputType: TextInputType.phone,
                   ),
                   /*
-                  =========================================
-                  = Phone End
-                  =========================================
-                  */
+                      =========================================
+                      = Phone End
+                      =========================================
+                      */
                   SizedBox(
                     height: 20.h,
                   ),
                   /*
-                  =========================================
-                  = Password Start
-                  =========================================
-                  */
+                      =========================================
+                      = Password Start
+                      =========================================
+                      */
                   CustomTextFormField(
                     controller: _passwordController,
                     focusNode: _passwordFocusNode,
                     validator: (passwordVal) {
                       passwordValue = passwordVal;
-                      if (passwordVal!.isEmpty ||
-                          !RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
-                              .hasMatch(passwordVal)) {
+                      if (passwordVal!.isEmpty) {
                         return 'Enter correct password';
                       } else {
                         return null;
@@ -225,18 +261,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   /*
-                  =========================================
-                  = Password End
-                  =========================================
-                  */
+                      =========================================
+                      = Password End
+                      =========================================
+                      */
                   SizedBox(
                     height: 20.h,
                   ),
                   /*
-                  =========================================
-                  = Repeat Password Start
-                  =========================================
-                  */
+                      =========================================
+                      = Repeat Password Start
+                      =========================================
+                      */
                   CustomTextFormField(
                     controller: _repeatPasswordController,
                     focusNode: _repeatPasswordFocusNode,
@@ -250,6 +286,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       } else {
                         return null;
                       }
+                    },
+                    onSaved: (repeatPasswordVal) {
+                      password = repeatPasswordVal;
                     },
                     labelText: 'Repeat Password',
                     obscureText: isRepeatPasswordVisible ? false : true,
@@ -266,18 +305,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   /*
-                  =========================================
-                  = Repeat Password End
-                  =========================================
-                  */
+                      =========================================
+                      = Repeat Password End
+                      =========================================
+                      */
                   SizedBox(
                     height: 10.h,
                   ),
                   /*
-                  =========================================
-                  = I Accept all Terms Start
-                  =========================================
-                  */
+                      =========================================
+                      = I Accept all Terms Start
+                      =========================================
+                      */
                   Row(
                     children: [
                       Checkbox(
@@ -305,32 +344,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   /*
-                  =========================================
-                  = Repeat Password Ends
-                  =========================================
-                  */
+                      =========================================
+                      = Repeat Password Ends
+                      =========================================
+                      */
                   const SizedBox(
                     height: 50,
                   ),
                   /*
-                  ==========================
-                  = The Login Button Starts
-                  ===========================
-                  */
+                      ==========================
+                      = The Login Button Starts
+                      ===========================
+                      */
                   MainButton(
                       text: "Sign Up",
                       onPressed: () {
-                        if (_formKey.currentState!.validate() &&
-                            isChecked == true) {
-                          GoRouter.of(context)
-                              .pushReplacement(AppRouter.verificationScreen);
-                        }
+                        register();
                       }),
                   /*
-                  ========================
-                  = The Login Button Ends
-                  ========================
-                  */
+                      ========================
+                      = The Login Button Ends
+                      ========================
+                      */
                 ],
               ),
             ),
@@ -340,3 +375,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+
+  // Future<void> _signup(AuthController model) async {
+  //   try {
+  //     await model.signup(name, email, password);
+  //     if (!mounted) return;
+  //     GoRouter.of(context).pushReplacement(AppRouter.otpScreen);
+  //   } catch (e) {
+  //     showDialog(
+  //         context: context,
+  //         builder: (_) => AlertDialog(
+  //               title: Text(
+  //                 'Error!',
+  //                 style: Theme.of(context).textTheme.titleLarge,
+  //               ),
+  //               content: Text(
+  //                 e.toString(),
+  //                 style: Theme.of(context).textTheme.titleMedium,
+  //               ),
+  //               actions: [
+  //                 TextButton(
+  //                     onPressed: () => Navigator.of(context).pop(),
+  //                     child: const Text('Ok'))
+  //               ],
+  //             ));
+  //   }
+  // }

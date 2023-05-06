@@ -9,6 +9,7 @@ import 'package:tap_cash/view/screens/splash_screen.dart';
 
 // GoRouter configuration
 abstract class AppRouter {
+  static const String landingScreen = '/landingScreen';
   static const String loginScreen = '/loginScreen';
   static const String signupScreen = '/signupScreen';
   static const String onBoardScreen = '/onBoardScreen';
@@ -22,6 +23,10 @@ abstract class AppRouter {
         path: '/',
         builder: (context, state) => const SplashScreen(),
       ),
+      // GoRoute(
+      //   path: '/landingScreen',
+      //   builder: (context, state) => const LandingPage(),
+      // ),
       GoRoute(
         path: loginScreen,
         builder: (context, state) => const LoginScreen(),
