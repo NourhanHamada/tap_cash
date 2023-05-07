@@ -5,7 +5,8 @@ import 'package:tap_cash/constants/styles.dart';
 import '../../../constants/colors.dart';
 
 class HomeCustomAppBar extends StatelessWidget {
-  const HomeCustomAppBar({Key? key}) : super(key: key);
+  String? name;
+  HomeCustomAppBar({Key? key, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class HomeCustomAppBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Hi, Amina',
+          'Hi, $name',
           style: MyStyles.textStyle20.copyWith(
             color: MyColors.mainColor,
           ),

@@ -6,7 +6,6 @@ import 'package:tap_cash/constants/colors.dart';
 import 'package:tap_cash/constants/images.dart';
 import 'package:tap_cash/constants/styles.dart';
 import 'package:tap_cash/view/utils/main_button.dart';
-
 import '../../utils/custom_text_field.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -146,7 +145,6 @@ class _OTPScreenState extends State<OTPScreen> {
                           fiveValue!.isEmpty ? 'Enter Fifth Digit' : null;
                         },
                       ),
-
                     ],
                   ),
 

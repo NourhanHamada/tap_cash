@@ -7,6 +7,7 @@ class Assets {
   static const String iconsAppLogoLight = 'assets/icons/app_logo_light.png';
   static const String iconsArrow = 'assets/icons/arrow.png';
   static const String iconsArrowBack = 'assets/icons/arrow_back.png';
+  static const String iconsArrowBack1 = 'assets/icons/arrow_back1.png';
   static const String iconsAsk = 'assets/icons/ask.png';
   static const String iconsBank = 'assets/icons/bank.png';
   static const String iconsBankFilled = 'assets/icons/bank_filled.png';
@@ -15,11 +16,14 @@ class Assets {
   static const String iconsCord = 'assets/icons/cord.png';
   static const String iconsDepts = 'assets/icons/depts.png';
   static const String iconsDonations = 'assets/icons/donations.png';
+  static const String iconsEye = 'assets/icons/eye.png';
   static const String iconsFingerPrint = 'assets/icons/finger_print.png';
+  static const String iconsFingerPrint1 = 'assets/icons/finger_print1.svg';
   static const String iconsHistory = 'assets/icons/history.png';
   static const String iconsHistoryFilled = 'assets/icons/history_filled.png';
   static const String iconsHousesMoney = 'assets/icons/houses_money.png';
-  static const String iconsImg = 'assets/icons/lets_go.png';
+  static const String iconsImg = 'assets/icons/clock.png';
+  static const String iconsLetsGo = 'assets/icons/lets_go.png';
   static const String iconsLogo = 'assets/icons/logo.png';
   static const String iconsLogo2 = 'assets/icons/logo2.png';
   static const String iconsMenu = 'assets/icons/menu.png';
@@ -28,6 +32,7 @@ class Assets {
   static const String iconsTransferFilled = 'assets/icons/transfer_filled.png';
   static const String iconsUser = 'assets/icons/user.png';
   static const String iconsUserFilled = 'assets/icons/user_filled.png';
+  static const String iconsVector = 'assets/icons/vector.png';
   static const String iconsWallet = 'assets/icons/wallet.png';
   static const String iconsWannaThank = 'assets/icons/wanna_thank.png';
   static const String iconsWannaThank2 = 'assets/icons/wanna_thank2.png';

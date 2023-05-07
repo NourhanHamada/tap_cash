@@ -7,7 +7,6 @@ import 'package:tap_cash/constants/colors.dart';
 import 'package:tap_cash/constants/styles.dart';
 import 'package:tap_cash/models/user_models.dart';
 import 'package:tap_cash/providers/auth_provider.dart';
-import 'package:tap_cash/providers/user_provider.dart';
 import 'package:tap_cash/view/utils/custom_text_form_field.dart';
 import 'package:tap_cash/view/utils/main_button.dart';
 import 'package:provider/provider.dart';
@@ -52,7 +51,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         auth.register(name, email, password).then((respose) {
           if (respose['status']) {
             User user = respose['data'];
-            GoRouter.of(context).pushReplacement(AppRouter.verificationScreen);
+            GoRouter.of(context).pushReplacement(AppRouter.otpScreen);
           } else {
             Flushbar(
                     title: "Registered Failed",
@@ -375,29 +374,3 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
-
-  // Future<void> _signup(AuthController model) async {
-  //   try {
-  //     await model.signup(name, email, password);
-  //     if (!mounted) return;
-  //     GoRouter.of(context).pushReplacement(AppRouter.otpScreen);
-  //   } catch (e) {
-  //     showDialog(
-  //         context: context,
-  //         builder: (_) => AlertDialog(
-  //               title: Text(
-  //                 'Error!',
-  //                 style: Theme.of(context).textTheme.titleLarge,
-  //               ),
-  //               content: Text(
-  //                 e.toString(),
-  //                 style: Theme.of(context).textTheme.titleMedium,
-  //               ),
-  //               actions: [
-  //                 TextButton(
-  //                     onPressed: () => Navigator.of(context).pop(),
-  //                     child: const Text('Ok'))
-  //               ],
-  //             ));
-  //   }
-  // }

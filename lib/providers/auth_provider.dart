@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:tap_cash/models/user_models.dart';
-import 'package:tap_cash/utility/app_url.dart';
 import 'package:tap_cash/utility/shared_preference.dart';
 
 enum Status {
@@ -48,7 +47,7 @@ class AuthProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       print(responseData);
       User authUser = User.fromJson(responseData);
-      // UserPerferences().saveUser(authUser);
+      UserPerferences().saveUser(authUser);
       return {
         'status': true,
         'message': "Successfuly registered",

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tap_cash/constants/colors.dart';
 import 'package:tap_cash/constants/icons.dart';
+import 'package:tap_cash/models/user_models.dart';
 import 'package:tap_cash/view/widgets/home_screen/home_grid_view.dart';
 import '../../utils/home_middle_card.dart';
 import '../../widgets/home_screen/Home_custom_app_bar.dart';
@@ -8,7 +9,9 @@ import '../../widgets/home_screen/home_lower_screen.dart';
 import '../../widgets/home_screen/home_upper_section.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen(this.userInfo, {super.key});
+
+  final User userInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +20,11 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 24),
         child: ListView(
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              child: HomeCustomAppBar(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: HomeCustomAppBar(
+                name: "${userInfo.firstName}",
+              ),
             ),
             const SizedBox(
               height: 10,

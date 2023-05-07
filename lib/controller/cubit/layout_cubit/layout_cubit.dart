@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tap_cash/constants/icons.dart';
+import 'package:tap_cash/models/user_models.dart';
 import 'package:tap_cash/view/screens/layout/history_screen.dart';
 import 'package:tap_cash/view/screens/layout/transfer_screen.dart';
 import 'package:tap_cash/view/screens/layout/user_screen.dart';
@@ -17,12 +18,16 @@ class LayoutCubit extends Cubit<LayoutState> {
   var currentIndex = 0;
   List<String> titles = [];
 
-  List<Widget> screens = const [
-    HomeScreen(),
-    TransferScreen(),
-    HistoryScreen(),
-    UserScreen(),
-  ];
+  List<Widget> screensMethod(User userInfo){
+    return [
+      HomeScreen(userInfo),
+      TransferScreen(),
+      HistoryScreen(),
+      UserScreen(),
+    ];
+  }
+
+
 
   List<BottomNavigationBarItem> bottomNavBarItems = [
     BottomNavigationBarItem(

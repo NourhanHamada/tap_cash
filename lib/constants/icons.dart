@@ -27,6 +27,11 @@ class MyIcons{
   static const String ask = 'assets/icons/ask.png';
   static const String arrowBack = 'assets/icons/arrow_back.png';
   static const String letsGo = 'assets/icons/lets_go.png';
+  static const String fingerPrint = 'assets/icons/finger_print.png';
+  static const String vector = 'assets/icons/vector.png';
+  static const String arrowBack1 = 'assets/icons/arrow_back1.png';
+  static const String eye = 'assets/icons/eye.png';
+  static const String clock = 'assets/icons/clock.png';
 
 
 
