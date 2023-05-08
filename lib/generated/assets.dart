@@ -2,17 +2,21 @@
 class Assets {
   Assets._();
 
+  static const String assetsFingerprint00 = 'assets/fingerprint00.png';
   static const String iconsAdd = 'assets/icons/add.png';
   static const String iconsAppLogo = 'assets/icons/app_logo.png';
   static const String iconsAppLogoLight = 'assets/icons/app_logo_light.png';
   static const String iconsArrow = 'assets/icons/arrow.png';
   static const String iconsArrowBack = 'assets/icons/arrow_back.png';
+  static const String iconsArrowBack0 = 'assets/icons/arrow_back0.png';
   static const String iconsArrowBack1 = 'assets/icons/arrow_back1.png';
+  static const String iconsArrowForward0 = 'assets/icons/arrow_forward0.png';
   static const String iconsAsk = 'assets/icons/ask.png';
   static const String iconsBank = 'assets/icons/bank.png';
   static const String iconsBankFilled = 'assets/icons/bank_filled.png';
   static const String iconsCard = 'assets/icons/card.png';
   static const String iconsChildsMoney = 'assets/icons/childs_money.png';
+  static const String iconsClock = 'assets/icons/clock.png';
   static const String iconsCord = 'assets/icons/cord.png';
   static const String iconsDepts = 'assets/icons/depts.png';
   static const String iconsDonations = 'assets/icons/donations.png';
@@ -22,7 +26,7 @@ class Assets {
   static const String iconsHistory = 'assets/icons/history.png';
   static const String iconsHistoryFilled = 'assets/icons/history_filled.png';
   static const String iconsHousesMoney = 'assets/icons/houses_money.png';
-  static const String iconsImg = 'assets/icons/clock.png';
+  static const String iconsImg = 'assets/icons/eye_closed.png';
   static const String iconsLetsGo = 'assets/icons/lets_go.png';
   static const String iconsLogo = 'assets/icons/logo.png';
   static const String iconsLogo2 = 'assets/icons/logo2.png';
@@ -37,6 +41,7 @@ class Assets {
   static const String iconsWannaThank = 'assets/icons/wanna_thank.png';
   static const String iconsWannaThank2 = 'assets/icons/wanna_thank2.png';
   static const String imagesAdultWithBaby = 'assets/images/adult_with_baby.png';
+  static const String imagesBackground = 'assets/images/background.png';
   static const String imagesDebts = 'assets/images/debts.png';
   static const String imagesKey = 'assets/images/key.png';
   static const String imagesMoney = 'assets/images/money.png';

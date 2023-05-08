@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tap_cash/controller/database/web_services/dio_helper.dart';
 import 'package:tap_cash/providers/auth_provider.dart';
-import 'package:tap_cash/providers/user_provider.dart';
 import 'package:tap_cash/utility/shared_preference.dart';
 import 'app_routes.dart';
 import 'constants/colors.dart';

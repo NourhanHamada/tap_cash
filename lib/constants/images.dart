@@ -6,4 +6,5 @@ class MyImages{
   static const String sendMoney = 'assets/images/send_money.png';
   static const String smartCard = 'assets/images/smart_card_blue.png';
   static const String wallet = 'assets/images/wallet.png';
+  static const String background = 'assets/images/background.png';
 }

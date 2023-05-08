@@ -31,7 +31,10 @@ class MyIcons{
   static const String vector = 'assets/icons/vector.png';
   static const String arrowBack1 = 'assets/icons/arrow_back1.png';
   static const String eye = 'assets/icons/eye.png';
+  static const String eyeClosed = 'assets/icons/eye_closed.png';
   static const String clock = 'assets/icons/clock.png';
+  static const String arrowBack0 = 'assets/icons/arrow_back0.png';
+  static const String arrowForward0 = 'assets/icons/arrow_forward0.png';
 
 
 
