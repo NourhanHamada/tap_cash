@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../constants/styles.dart';
+import '../../constants/styles_manager.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
       {Key? key,
       required this.controller,
       required this.focusNode,
+      required this.onSaved,
       this.validator})
       : super(key: key);
 
   final TextEditingController controller;
   final FocusNode focusNode;
   final String? Function(String?)? validator;
+  final Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +29,7 @@ class CustomTextField extends StatelessWidget {
             FocusScope.of(context).nextFocus();
           }
         },
-        onSaved: (val) {
-          print(val);
-        },
+        onSaved: onSaved,
         controller: controller,
         focusNode: focusNode,
         style: MyStyles.textStyle20,

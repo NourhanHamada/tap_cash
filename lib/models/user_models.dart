@@ -1,27 +1,29 @@
 class User {
-  String? name;
+  String? firstName;
+  String? lastName;
   String? email;
   String? phone;
-  String? type;
   String? token;
-  String? renewalToken;
+  // String? renewalToken;
+  // bool? onboardingSeen;
 
   User({
-    this.name,
+    this.firstName,
+    this.lastName,
     this.email,
     this.phone,
-    this.type,
     this.token,
-    this.renewalToken,
+    // this.renewalToken,
   });
 
   factory User.fromJson(Map<String, dynamic> responseData) {
     return User(
-        name: responseData['name'],
-        email: responseData['email'],
-        phone: responseData['phone'],
-        type: responseData['type'],
-        token: responseData['token'],
-        renewalToken: responseData['renewalToken']);
+      firstName: responseData['firstName'],
+      lastName: responseData['lastName'],
+      email: responseData['email'],
+      phone: responseData['phone'],
+      token: responseData['token'],
+    );
+    // renewalToken: responseData['renewalToken']);
   }
 }

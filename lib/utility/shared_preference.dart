@@ -1,45 +1,65 @@
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tap_cash/app_routes.dart';
 import 'package:tap_cash/models/user_models.dart';
 
-class UserPerferences {
-  Future<bool> saveUser(User user) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("email", user.email!);
-    prefs.setString("phone", user.phone!);
-    prefs.setString("type", user.type!);
-    prefs.setString("token", user.token!);
-    prefs.setString("renewalToken", user.renewalToken!);
+class UserPerferences extends ChangeNotifier {
+  static late SharedPreferences prefs; // declare sharedPreferences variable.
+  static sharedInitialize() async {
+    prefs = await SharedPreferences
+        .getInstance(); // assignment an Instance to shred variable.
+  }
 
-    return prefs.commit();
+  Future<void> saveUser(User user, String screenName) async {
+    switch (screenName) {
+      case AppRouter.onBoardScreen:
+        prefs.setBool('seen', true);
+        break;
+      case AppRouter.loginScreen:
+        prefs.setString("email", user.email!);
+        // prefs.setString("password", user.password!);
+        // prefs.setString("token", user.token!);
+        break;
+      case AppRouter.signupScreen:
+        prefs.setString("firstName", user.firstName!);
+        prefs.setString("lastName", user.lastName!);
+        prefs.setString("email", user.email!);
+        prefs.setString("phone", user.phone!);
+        prefs.setString("token", user.token!);
+        break;
+    }
   }
 
   Future<User> getUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    String? name = prefs.getString("name");
+    String? firstName = prefs.getString("firstName");
+    String? lastName = prefs.getString("lastName");
     String? email = prefs.getString("email");
     String? phone = prefs.getString("phone");
-    String? type = prefs.getString("type");
     String? token = prefs.getString("token");
     String? renewalToken = prefs.getString("renewalToken");
     return User(
-        name: name!,
-        email: email!,
-        phone: phone!,
-        type: type!,
-        token: token!,
-        renewalToken: renewalToken!);
+      firstName: firstName!,
+      lastName: lastName,
+      email: email!,
+      phone: phone!,
+      token: token!,
+    );
+  }
+
+  userInfo() async {
+    User userInfo = await getUser();
   }
 
   void removeUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.remove("name");
+    prefs.remove("firstName");
+    prefs.remove("lastName");
     prefs.remove("email");
     prefs.remove("phone");
-    prefs.remove("type");
     prefs.remove("token");
-    prefs.remove("renewalToken");
   }
 
   Future<String?> getToken() async {

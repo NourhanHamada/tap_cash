@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tap_cash/constants/colors.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
 import 'package:tap_cash/controller/cubit/layout_cubit/layout_cubit.dart';
+import 'package:provider/provider.dart';
+import '../../../utility/shared_preference.dart';
 
 class LayOut extends StatefulWidget {
   const LayOut({Key? key}) : super(key: key);
@@ -13,6 +15,7 @@ class LayOut extends StatefulWidget {
 class _LayOutState extends State<LayOut> {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserPerferences>(context);
     return BlocProvider(
       create: (BuildContext context) => LayoutCubit(),
       child: BlocConsumer<LayoutCubit, LayoutState>(
@@ -20,7 +23,17 @@ class _LayOutState extends State<LayOut> {
         builder: (context, state) {
           LayoutCubit cubit = BlocProvider.of(context);
           return Scaffold(
-            body: cubit.screens[cubit.currentIndex],
+            body: FutureBuilder(
+              future: user.getUser(),
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                print(
+                    "=======================================================");
+                print("this is the Snapshot Data = ${snapshot.data}");
+                print(
+                    "=======================================================");
+                return cubit.screensMethod(snapshot.data)[cubit.currentIndex];
+              },
+            ),
             bottomNavigationBar: BottomNavigationBar(
               items: cubit.bottomNavBarItems,
               type: BottomNavigationBarType.fixed,

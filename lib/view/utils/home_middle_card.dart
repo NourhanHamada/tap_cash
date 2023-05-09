@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../constants/colors.dart';
-import '../../constants/styles.dart';
+import '../../constants/colors_manager.dart';
+import '../../constants/styles_manager.dart';
 
 class HomeMiddleSectionCard extends StatelessWidget {
   const HomeMiddleSectionCard(

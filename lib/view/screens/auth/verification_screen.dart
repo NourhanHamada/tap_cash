@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tap_cash/app_routes.dart';
-import 'package:tap_cash/constants/colors.dart';
-import 'package:tap_cash/constants/images.dart';
-import 'package:tap_cash/constants/styles.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
+import 'package:tap_cash/constants/styles_manager.dart';
+import 'package:tap_cash/controller/auth_controllers/reset_controller.dart';
 import 'package:tap_cash/providers/auth_provider.dart';
 import 'package:tap_cash/view/utils/custom_text_form_field.dart';
 import 'package:tap_cash/view/utils/main_button.dart';
 import 'package:provider/provider.dart';
-import 'package:another_flushbar/flushbar.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({super.key});
@@ -19,45 +19,17 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _emailFocusNode = FocusNode();
-  String? email;
-
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthProvider>(context);
-    void register() {
-      final form = _formKey.currentState;
-      if (form!.validate()) {
-        form.save();
-        auth.verification(email).then((respose) {
-          if (respose['status']) {
-            GoRouter.of(context).pushReplacement(AppRouter.otpScreen);
-          } else {
-            Flushbar(
-                    title: "Registered Failed",
-                    message: respose.toString(),
-                    duration: const Duration(seconds: 100))
-                .show(context);
-          }
-        });
-      } else {
-        Flushbar(
-                title: "Invalid Form",
-                message: 'please complete the form properly',
-                duration: const Duration(seconds: 100))
-            .show(context);
-      }
-    }
-
+    final resetController = Provider.of<ResetController>(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(30.0),
           child: SingleChildScrollView(
             child: Form(
-              key: _formKey,
+              key: resetController.verificationFormKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -102,7 +74,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   Padding(
                     padding: const EdgeInsets.all(90.0),
                     child: Image.asset(
-                      MyImages.key,
+                      ImageAssets.key,
                       width: 180.w,
                     ),
                   ),
@@ -126,19 +98,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   =========================================
                   */
                   CustomTextFormField(
-                    controller: _emailController,
-                    focusNode: _emailFocusNode,
+                    controller: resetController.emailController,
+                    focusNode: resetController.emailFocusNode,
                     validator: (emailvalue) {
-                      if (emailvalue!.isEmpty ||
-                          !RegExp(r'^[\w-\.]+@([\w-]+\.)+\w{2,4}')
-                              .hasMatch(emailvalue)) {
+                      if (emailvalue!.isEmpty) {
                         return 'Enter correct Email';
                       } else {
                         return null;
                       }
                     },
                     onSaved: (emailValue) {
-                      email = emailValue;
+                      resetController.setEmail(emailValue);
                     },
                     textInputAction: TextInputAction.done,
                     labelText: 'Email',
@@ -162,10 +132,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   MainButton(
                       text: "Send",
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          GoRouter.of(context)
-                              .pushReplacement(AppRouter.otpScreen);
-                        }
+                        resetController.verification(
+                          auth: auth,
+                          context: context,
+                        );
                       }),
                   /*
                   ========================

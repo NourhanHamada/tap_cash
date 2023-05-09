@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tap_cash/constants/colors.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
 
-import '../../constants/styles.dart';
+import '../../constants/styles_manager.dart';
 
 class CustomRoundedCard extends StatelessWidget {
   const CustomRoundedCard({
@@ -49,10 +49,8 @@ class CustomRoundedCard extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: MyStyles.textStyle16.copyWith(
-                fontWeight: fontWeight,
-                color: MyColors.mainColor
-              ),
+              style: MyStyles.textStyle16
+                  .copyWith(fontWeight: fontWeight, color: MyColors.mainColor),
             ),
           ),
         ],

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tap_cash/app_routes.dart';
-import 'package:tap_cash/constants/colors.dart';
-import 'package:tap_cash/constants/images.dart';
-import 'package:tap_cash/constants/styles.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
+import 'package:tap_cash/constants/styles_manager.dart';
+import 'package:tap_cash/controller/auth_controllers/reset_controller.dart';
+import 'package:tap_cash/providers/auth_provider.dart';
 import 'package:tap_cash/view/utils/custom_text_form_field.dart';
 import 'package:tap_cash/view/utils/main_button.dart';
+import 'package:provider/provider.dart';
 
 class NewPassword extends StatefulWidget {
   const NewPassword({super.key});
@@ -29,13 +32,15 @@ class _NewPasswordState extends State<NewPassword> {
   String? repeatpasswordValue;
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthProvider>(context);
+    final resetController = Provider.of<ResetController>(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
           child: SingleChildScrollView(
             child: Form(
-              key: _formKey,
+              key: resetController.resetformKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -80,7 +85,7 @@ class _NewPasswordState extends State<NewPassword> {
                   Padding(
                     padding: const EdgeInsets.all(90.0),
                     child: Image.asset(
-                      MyImages.key,
+                      ImageAssets.key,
                       width: 180.w,
                     ),
                   ),
@@ -89,6 +94,7 @@ class _NewPasswordState extends State<NewPassword> {
                   = NewPassword Screen Image End
                   =========================================
                   */
+
                   /*
                   =========================================
                   = Password Start
@@ -97,15 +103,16 @@ class _NewPasswordState extends State<NewPassword> {
                   CustomTextFormField(
                     controller: _passwordController,
                     focusNode: _passwordFocusNode,
-                    validator: (passwordval) {
-                      passwordValue = passwordval;
-                      if (passwordval!.isEmpty ||
-                          !RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
-                              .hasMatch(passwordval)) {
+                    validator: (passwordVal) {
+                      passwordValue = passwordVal;
+                      if (passwordVal!.isEmpty) {
                         return 'Enter correct password';
                       } else {
                         return null;
                       }
+                    },
+                    onSaved: (passwordVal) {
+                      resetController.setPassword(passwordVal);
                     },
                     onEditingComplete: () => FocusScope.of(context)
                         .requestFocus(_repeatpasswordFocusNode),
@@ -151,6 +158,9 @@ class _NewPasswordState extends State<NewPassword> {
                         return null;
                       }
                     },
+                    onSaved: (repeatpasswordval) {
+                      resetController.setRepeatPassword(repeatpasswordval);
+                    },
                     labelText: 'Repeat Password',
                     obscureText: isRepeatpasswordVisible ? false : true,
                     textInputType: TextInputType.emailAddress,
@@ -182,10 +192,7 @@ class _NewPasswordState extends State<NewPassword> {
                   MainButton(
                       text: "Done",
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          GoRouter.of(context)
-                              .pushReplacement(AppRouter.loginScreen);
-                        }
+                        resetController.resetPassword(auth, context);
                       }),
                   /*
                   ========================

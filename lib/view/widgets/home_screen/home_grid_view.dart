@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tap_cash/constants/colors.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
 
-import '../../../constants/icons.dart';
 import '../../utils/custom_rounded_card.dart';
 
 class HomeGridView extends StatelessWidget {
@@ -16,12 +16,12 @@ class HomeGridView extends StatelessWidget {
     'Donation & Helps',
   ];
   final List<String> icons = [
-    MyIcons.wallet,
-    MyIcons.card,
-    MyIcons.childsMoney,
-    MyIcons.housesMoney,
-    MyIcons.debts,
-    MyIcons.donation,
+    IconsAssets.wallet,
+    IconsAssets.card,
+    IconsAssets.childsMoney,
+    IconsAssets.housesMoney,
+    IconsAssets.debts,
+    IconsAssets.donation,
   ];
 
   @override
