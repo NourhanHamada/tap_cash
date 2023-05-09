@@ -5,6 +5,7 @@ import 'package:tap_cash/view/screens/auth/otp_screen.dart';
 import 'package:tap_cash/view/screens/auth/signup_screen.dart';
 import 'package:tap_cash/view/screens/auth/verification_screen.dart';
 import 'package:tap_cash/view/screens/layout/layout.dart';
+import 'package:tap_cash/view/screens/layout/transfer_screen.dart';
 import 'package:tap_cash/view/screens/on_board.dart';
 import 'package:tap_cash/view/screens/passcode_screen.dart';
 import 'package:tap_cash/view/screens/splash_screen.dart';
@@ -23,6 +24,7 @@ abstract class AppRouter {
   static const String layout = '/layout';
   static const String passcode = '/passcode';
   static const String wallet = '/wallet';
+  static const String transfer = '/transfer';
 
   static final router = GoRouter(
     routes: [
@@ -69,6 +71,10 @@ abstract class AppRouter {
       GoRoute(
         path: wallet,
         builder: (context, state) => const WalletScreen(),
+      ),
+      GoRoute(
+        path: transfer,
+        builder: (context, state) => const TransferScreen(),
       ),
     ],
   );

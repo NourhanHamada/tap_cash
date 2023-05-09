@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tap_cash/controller/cubit/layout_cubit/layout_cubit.dart';
+import 'package:tap_cash/controller/cubit/wallet_cubit/wallet_cubit.dart';
 import 'package:tap_cash/controller/database/web_services/dio_helper.dart';
 import 'package:tap_cash/providers/auth_provider.dart';
 import 'package:tap_cash/utility/shared_preference.dart';
@@ -20,10 +22,13 @@ Future<void> main() async {
   await DioHelper.init();
   await SharedHelper.sharedInitialize();
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => AuthProvider()),
-      ChangeNotifierProvider(create: (_) => UserPerferences()),
-    ], child: const TapCash()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => UserPerferences()),
+      ],
+      child: const TapCash(),
+    ),
   );
 }
 
@@ -32,19 +37,25 @@ class TapCash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 811),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (BuildContext context, Widget? child) {
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primaryColor: MyColors.mainColor,
-          ),
-          routerConfig: AppRouter.router,
-        );
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (BuildContext context) => LayoutCubit()),
+        BlocProvider(create: (BuildContext context) => WalletCubit()),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 811),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (BuildContext context, Widget? child) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primaryColor: MyColors.mainColor,
+            ),
+            routerConfig: AppRouter.router,
+          );
+        },
+      ),
     );
   }
 }

@@ -2,7 +2,6 @@
 class Assets {
   Assets._();
 
-  static const String assetsFingerprint00 = 'assets/fingerprint00.png';
   static const String iconsAdd = 'assets/icons/add.png';
   static const String iconsAppLogo = 'assets/icons/app_logo.png';
   static const String iconsAppLogoLight = 'assets/icons/app_logo_light.png';
@@ -21,12 +20,13 @@ class Assets {
   static const String iconsDepts = 'assets/icons/depts.png';
   static const String iconsDonations = 'assets/icons/donations.png';
   static const String iconsEye = 'assets/icons/eye.png';
+  static const String iconsEyeClosed = 'assets/icons/eye_closed.png';
   static const String iconsFingerPrint = 'assets/icons/finger_print.png';
   static const String iconsFingerPrint1 = 'assets/icons/finger_print1.svg';
+  static const String iconsFingerprint00 = 'assets/icons/fingerprint00.png';
   static const String iconsHistory = 'assets/icons/history.png';
   static const String iconsHistoryFilled = 'assets/icons/history_filled.png';
   static const String iconsHousesMoney = 'assets/icons/houses_money.png';
-  static const String iconsImg = 'assets/icons/eye_closed.png';
   static const String iconsLetsGo = 'assets/icons/lets_go.png';
   static const String iconsLogo = 'assets/icons/logo.png';
   static const String iconsLogo2 = 'assets/icons/logo2.png';

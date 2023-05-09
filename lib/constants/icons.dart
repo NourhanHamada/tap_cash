@@ -35,6 +35,7 @@ class MyIcons{
   static const String clock = 'assets/icons/clock.png';
   static const String arrowBack0 = 'assets/icons/arrow_back0.png';
   static const String arrowForward0 = 'assets/icons/arrow_forward0.png';
+  static const String fingerPrint00 = 'assets/icons/fingerprint00.png';
 
 
 

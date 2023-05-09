@@ -32,13 +32,7 @@ class PasscodeScreen extends StatelessWidget {
                 color: MyColors.grey,
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
            const CustomNumbersInput(),
-            SvgPicture.asset(
-              'assets/icons/finger_print1.svg',
-            )
           ],
         ),
       ),
