@@ -9,6 +9,7 @@ class ImageAssets {
   static const String sendMoney = '$imagePath/send_money.png';
   static const String smartCard = '$imagePath/smart_card_blue.png';
   static const String wallet = '$imagePath/wallet.png';
+  static const String background = 'assets/images/background.png';
 }
 
 class IconsAssets {
@@ -44,5 +45,9 @@ class IconsAssets {
   static const String vector = '$iconPath/vector.png';
   static const String arrowBack1 = '$iconPath/arrow_back1.png';
   static const String eye = '$iconPath/eye.png';
+  static const String eyeClosed = 'assets/icons/eye_closed.png';
   static const String clock = '$iconPath/clock.png';
+  static const String arrowBack0 = 'assets/icons/arrow_back0.png';
+  static const String arrowForward0 = 'assets/icons/arrow_forward0.png';
+  static const String fingerPrint00 = 'assets/icons/fingerprint00.png';
 }

@@ -30,11 +30,11 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  // TO DO Check : User Have seen The onboarding Screen Before
+  // TO DO Check : User Have seen The onboard Screen Before
   // Function to navigate to Home after 2 seconds.
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 2), () {
-      GoRouter.of(context).push(AppRouter.onBoardScreen);
+      GoRouter.of(context).push(AppRouter.passcode);
       // GoRouter.of(context).push(AppRouter.otpScreen);
     });
   }

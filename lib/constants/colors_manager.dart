@@ -11,4 +11,6 @@ class MyColors {
   static const Color mentGreen = Color(0xffCFF4FD);
   static const Color lightGrey = Color(0xffEAEEF1);
   static const Color red = Color(0xffEB5644);
+  static const Color mintGreen = Color(0xffE1EEDD);
+  static const Color rose = Color(0xffF9CEEE);
 }

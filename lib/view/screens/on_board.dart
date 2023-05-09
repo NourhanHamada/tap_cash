@@ -50,8 +50,8 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 5,
+            horizontal: 24,
+            vertical: 4,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

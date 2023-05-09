@@ -18,14 +18,21 @@ class LayoutCubit extends Cubit<LayoutState> {
   var currentIndex = 0;
   List<String> titles = [];
 
-  List<Widget> screensMethod(User userInfo) {
-    return [
-      HomeScreen(userInfo),
-      TransferScreen(),
-      HistoryScreen(),
-      UserScreen(),
-    ];
-  }
+  // List<Widget> screensMethod(User userInfo) {
+  //   return [
+  //     HomeScreen(userInfo),
+  //     TransferScreen(),
+  //     HistoryScreen(),
+  //     UserScreen(),
+  //   ];
+  // }
+
+  List<Widget>screens = [
+    HomeScreen(),
+    TransferScreen(),
+    HistoryScreen(),
+    UserScreen(),
+  ];
 
   List<BottomNavigationBarItem> bottomNavBarItems = [
     BottomNavigationBarItem(

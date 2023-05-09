@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:tap_cash/constants/colors_manager.dart';
-import 'package:tap_cash/constants/styles_manager.dart';
-
+import '../../constants/colors_manager.dart';
+import '../../constants/styles_manager.dart';
 import '../utils/custom_number_input.dart';
 
 class PasscodeScreen extends StatelessWidget {
@@ -32,13 +30,7 @@ class PasscodeScreen extends StatelessWidget {
                 color: MyColors.grey,
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            const CustomNumbersInput(),
-            SvgPicture.asset(
-              'assets/icons/finger_print1.svg',
-            )
+           const CustomNumbersInput(),
           ],
         ),
       ),

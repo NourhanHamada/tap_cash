@@ -9,9 +9,9 @@ import '../../widgets/home_screen/home_lower_screen.dart';
 import '../../widgets/home_screen/home_upper_section.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen(this.userInfo, {super.key});
+  const HomeScreen(/*this.userInfo,*/ {super.key});
 
-  final User userInfo;
+  // final User userInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +20,11 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 24),
         child: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: HomeCustomAppBar(
-                name: "${userInfo.firstName}",
-              ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              // child: HomeCustomAppBar(
+              //   name: "${userInfo.firstName}",
+              // ),
             ),
             const SizedBox(
               height: 10,

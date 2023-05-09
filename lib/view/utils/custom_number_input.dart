@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import '../../constants/assets_manager.dart';
 import '../../constants/colors_manager.dart';
 import '../../constants/styles_manager.dart';
 
@@ -24,9 +26,35 @@ class _CustomNumbersInputState extends State<CustomNumbersInput> {
   ];
   int zero = 0;
   List<String> result = [];
+  late String passCode;
+  final StreamController<bool> _verificationNotifier = StreamController<bool>.broadcast();
 
   @override
   Widget build(BuildContext context) {
+    // return
+    // SizedBox(
+    //   height: 600,
+    //   child:
+    // ScreenLock(correctString: '123456', onUnlocked: (){},));
+    // return SizedBox(
+    //   height: 700,
+    //   child: PasscodeScreen(
+    //     backgroundColor: Colors.transparent,
+    //     title: const Text(''),
+    //       passwordEnteredCallback: (String enterPassword) {},
+    //       cancelButton: Text('cancel'),
+    //       deleteButton: Text('delete'),
+    //       shouldTriggerVerification: _verificationNotifier.stream,
+    //     circleUIConfig: const CircleUIConfig(
+    //       borderColor: Colors.grey,
+    //       fillColor: MyColors.blue,
+    //       circleSize: 16
+    //     ),
+    //     keyboardUIConfig: const KeyboardUIConfig(
+    //       digitTextStyle: MyStyles.textStyle24,
+    //     ),
+    //   ),
+    // );
     return SizedBox(
       height: 450,
       child: GridView.builder(
@@ -39,50 +67,46 @@ class _CustomNumbersInputState extends State<CustomNumbersInput> {
         itemBuilder: (BuildContext context, int index) {
           return index == 9
               ? Text(
-                  'Forget?',
-                  textAlign: TextAlign.center,
-                  style: MyStyles.textStyle10.copyWith(
-                    color: MyColors.red,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
+            'Forget?',
+            textAlign: TextAlign.center,
+            style: MyStyles.textStyle10.copyWith(
+              color: MyColors.red,
+              fontWeight: FontWeight.bold,
+            ),
+          )
               : index == 10
-                  ? GestureDetector(
-                      onTap: () {
-                        // print(zero.toString());
-                        result.add(zero.toString());
-                      },
-                      child: Text(
-                        zero.toString(),
-                        textAlign: TextAlign.center,
-                        style: MyStyles.textStyle20.copyWith(
-                          color: MyColors.mainColor,
-                        ),
-                      ),
-                    )
-                  : index == 11
-                      ? SvgPicture.asset(
-                          'assets/icons/finger_print1.svg',
-                          width: 32,
-                          height: 32,
-                        )
-                      // Image.asset(
-                      //                 MyIcons.fingerPrint,
-                      //               )
-                      : GestureDetector(
-                          onTap: () {
-                            // print(number[index]);
-                            result.add([number[index]].toString());
-                            print(result.join());
-                          },
-                          child: Text(
-                            number[index].toString(),
-                            textAlign: TextAlign.center,
-                            style: MyStyles.textStyle20.copyWith(
-                              color: MyColors.mainColor,
-                            ),
-                          ),
-                        );
+              ? GestureDetector(
+            onTap: () {
+              // print(zero.toString());
+              result.add(zero.toString());
+              print(result.join());
+            },
+            child: Text(
+              zero.toString(),
+              textAlign: TextAlign.center,
+              style: MyStyles.textStyle20.copyWith(
+                color: MyColors.mainColor,
+              ),
+            ),
+          )
+              : index == 11
+              ? Container(
+              alignment: Alignment.topCenter,
+              child: Image.asset(IconsAssets.fingerPrint00))
+              : GestureDetector(
+            onTap: () {
+              // print(number[index]);
+              result.add([number[index]].toString());
+              print(result.join());
+            },
+            child: Text(
+              number[index].toString(),
+              textAlign: TextAlign.center,
+              style: MyStyles.textStyle20.copyWith(
+                color: MyColors.mainColor,
+              ),
+            ),
+          );
         },
       ),
     );
