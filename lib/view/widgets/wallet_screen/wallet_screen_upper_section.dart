@@ -5,10 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/date_symbol_data_local.dart'; //for date locale
 import 'package:intl/intl.dart';
 import 'package:tap_cash/view/widgets/wallet_screen/wallet_screen_custom_appbar.dart';
-import '../../../constants/colors.dart';
-import '../../../constants/icons.dart';
-import '../../../constants/images.dart';
-import '../../../constants/styles.dart';
+import '../../../constants/assets_manager.dart';
+import '../../../constants/colors_manager.dart';
+import '../../../constants/styles_manager.dart';
 import '../../../controller/cubit/wallet_cubit/wallet_cubit.dart';
 
 class WalletScreenUpperSection extends StatefulWidget {
@@ -41,7 +40,7 @@ class _WalletScreenUpperSectionState extends State<WalletScreenUpperSection> {
             children: [
               // NavyBlue background.
               Image.asset(
-                MyImages.background,
+                ImageAssets.background,
                 fit: BoxFit.fill,
                 width: 600.h,
               ),
@@ -72,7 +71,7 @@ class _WalletScreenUpperSectionState extends State<WalletScreenUpperSection> {
                               walletCubit.changeBlurText();
                             },
                             icon: Image.asset(
-                              walletCubit.isBlur ? MyIcons.eyeClosed : MyIcons
+                              walletCubit.isBlur ? IconsAssets.eyeClosed : IconsAssets
                                   .eye,
                             ),
                           ),
@@ -114,7 +113,7 @@ class _WalletScreenUpperSectionState extends State<WalletScreenUpperSection> {
                             width: 8,
                           ),
                           Image.asset(
-                            MyIcons.clock,
+                            IconsAssets.clock,
                             width: 16,
                           ),
                           const SizedBox(

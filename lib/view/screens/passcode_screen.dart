@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:tap_cash/constants/colors.dart';
-import 'package:tap_cash/constants/styles.dart';
-
+import '../../constants/colors_manager.dart';
+import '../../constants/styles_manager.dart';
 import '../utils/custom_number_input.dart';
 
 class PasscodeScreen extends StatelessWidget {

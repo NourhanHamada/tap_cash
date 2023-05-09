@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tap_cash/constants/icons.dart';
-import 'package:tap_cash/constants/styles.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
+import 'package:tap_cash/constants/styles_manager.dart';
 
-import '../../../constants/colors.dart';
+import '../../../constants/colors_manager.dart';
 
 class HomeCustomAppBar extends StatelessWidget {
   String? name;
@@ -22,7 +22,7 @@ class HomeCustomAppBar extends StatelessWidget {
         IconButton(
           onPressed: () {},
           icon: Image.asset(
-            MyIcons.menu,
+            IconsAssets.menu,
             width: 24,
           ),
         ),

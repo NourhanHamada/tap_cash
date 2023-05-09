@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tap_cash/constants/colors.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
 
 class CustomTextFormField extends StatelessWidget {
   CustomTextFormField(
@@ -7,10 +7,10 @@ class CustomTextFormField extends StatelessWidget {
       this.suffixIcon,
       this.onEditingComplete,
       this.border,
-       this.textInputAction,
-       this.validator,
-        this.textStyle,
-        this.inputFormatter,
+      this.textInputAction,
+      this.validator,
+      this.textStyle,
+      this.inputFormatter,
       required this.focusNode,
       this.onChanged,
       this.onSaved,
@@ -32,8 +32,8 @@ class CustomTextFormField extends StatelessWidget {
   InputBorder? border;
   void Function(String)? onChanged;
   void Function(String?)? onSaved;
-   var textStyle;
-   var inputFormatter;
+  var textStyle;
+  var inputFormatter;
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +48,17 @@ class CustomTextFormField extends StatelessWidget {
       onSaved: onSaved,
       onChanged: onChanged,
       decoration: InputDecoration(
-          suffixIcon: suffixIcon,
-          border: border ??
-              OutlineInputBorder(
-                borderSide:
-                    const BorderSide(width: 2, color: MyColors.babyBlue),
-                borderRadius: BorderRadius.circular(23),
-              ),
-          // labelText: labelText,
-          label: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Text(labelText),
-          ),
+        suffixIcon: suffixIcon,
+        border: border ??
+            OutlineInputBorder(
+              borderSide: const BorderSide(width: 2, color: MyColors.babyBlue),
+              borderRadius: BorderRadius.circular(23),
+            ),
+        // labelText: labelText,
+        label: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text(labelText),
+        ),
         labelStyle: textStyle,
       ),
     );

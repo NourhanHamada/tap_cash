@@ -5,6 +5,7 @@ class User {
   String? phone;
   String? token;
   // String? renewalToken;
+  // bool? onboardingSeen;
 
   User({
     this.firstName,
@@ -17,12 +18,12 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> responseData) {
     return User(
-        firstName: responseData['firstName'],
-        lastName: responseData['lastName'],
-        email: responseData['email'],
-        phone: responseData['phone'],
-        token: responseData['token'],
+      firstName: responseData['firstName'],
+      lastName: responseData['lastName'],
+      email: responseData['email'],
+      phone: responseData['phone'],
+      token: responseData['token'],
     );
-        // renewalToken: responseData['renewalToken']);
+    // renewalToken: responseData['renewalToken']);
   }
 }

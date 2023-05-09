@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tap_cash/controller/cubit/wallet_cubit/wallet_cubit.dart';
-import '../../../constants/colors.dart';
-import '../../../constants/icons.dart';
-import '../../../constants/styles.dart';
+import '../../../constants/assets_manager.dart';
+import '../../../constants/colors_manager.dart';
+import '../../../constants/styles_manager.dart';
 import '../../../models/money_data.dart';
 
 class WalletScreenLowerSection extends StatefulWidget {
@@ -68,7 +68,7 @@ class _WalletScreenLowerSectionState extends State<WalletScreenLowerSection> {
                       });
                     },
                     child: Image.asset(
-                      MyIcons.arrowBack0,
+                      IconsAssets.arrowBack0,
                       width: 7,
                     ),
                   ),
@@ -95,7 +95,7 @@ class _WalletScreenLowerSectionState extends State<WalletScreenLowerSection> {
                       });
                     },
                     child: Image.asset(
-                      MyIcons.arrowForward0,
+                      IconsAssets.arrowForward0,
                       width: 7,
                     ),
                   ),

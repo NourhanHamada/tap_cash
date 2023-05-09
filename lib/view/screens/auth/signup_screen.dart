@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tap_cash/app_routes.dart';
-import 'package:tap_cash/constants/colors.dart';
-import 'package:tap_cash/constants/styles.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
+import 'package:tap_cash/constants/styles_manager.dart';
 import 'package:tap_cash/models/user_models.dart';
 import 'package:tap_cash/providers/auth_provider.dart';
 import 'package:tap_cash/view/utils/custom_text_form_field.dart';
@@ -48,14 +48,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
       final form = _formKey.currentState;
       if (form!.validate() && isChecked == true) {
         form.save();
-        auth.register(name, email, password).then((respose) {
-          if (respose['status']) {
-            User user = respose['data'];
-            GoRouter.of(context).pushReplacement(AppRouter.otpScreen);
+        auth.register(name, email, password).then((response) {
+          if (response['status']) {
+            User user = response['data'];
+            auth.setRegisterStatus(Status.registered);
+            auth.verification(user.email).then((response) {
+              if (response['status']) {
+                User user = response['data'];
+                GoRouter.of(context).pushReplacement(AppRouter.otpScreen);
+              } else {
+                Flushbar(
+                        title: "Registered Failed",
+                        message: response.toString(),
+                        duration: const Duration(seconds: 100))
+                    .show(context);
+              }
+            });
           } else {
             Flushbar(
                     title: "Registered Failed",
-                    message: respose.toString(),
+                    message: response.toString(),
                     duration: const Duration(seconds: 100))
                 .show(context);
           }

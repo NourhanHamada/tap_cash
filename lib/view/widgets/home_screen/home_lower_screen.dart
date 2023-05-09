@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../../constants/colors.dart';
-import '../../../constants/icons.dart';
-import '../../../constants/styles.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
+import '../../../constants/colors_manager.dart';
+import '../../../constants/styles_manager.dart';
 
 class HomeLowerSection extends StatefulWidget {
   const HomeLowerSection({Key? key}) : super(key: key);
@@ -13,16 +13,15 @@ class HomeLowerSection extends StatefulWidget {
 }
 
 class _HomeLowerSectionState extends State<HomeLowerSection> {
-
   final List<String> texts = [
     'How to save electricity?',
     'How to save electricity?',
     'How to save electricity?',
   ];
   final List<String> icons = [
-    MyIcons.cord,
-    MyIcons.cord,
-    MyIcons.cord,
+    IconsAssets.cord,
+    IconsAssets.cord,
+    IconsAssets.cord,
   ];
   var pageController = PageController();
 
@@ -39,7 +38,8 @@ class _HomeLowerSectionState extends State<HomeLowerSection> {
             ),
             Text(
               'All',
-              style: MyStyles.textStyle16.copyWith(color: MyColors.grey, fontWeight: FontWeight.bold),
+              style: MyStyles.textStyle16
+                  .copyWith(color: MyColors.grey, fontWeight: FontWeight.bold),
             )
           ],
         ),
@@ -65,7 +65,7 @@ class _HomeLowerSectionState extends State<HomeLowerSection> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                       Text(
+                      Text(
                         texts[index],
                         style: MyStyles.textStyle20,
                       ),

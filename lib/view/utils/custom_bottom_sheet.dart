@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../constants/styles.dart';
+import '../../constants/styles_manager.dart';
 import 'custom_divider.dart';
 
 class CustomBottomSheet extends StatelessWidget {

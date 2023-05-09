@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../constants/colors.dart';
-import '../../../constants/icons.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
+
+import '../../../constants/colors_manager.dart';
 import '../../utils/custom_bottom_sheet.dart';
 import '../../utils/custom_rounded_card.dart';
 
@@ -32,15 +33,15 @@ class HomeUpperSection extends StatelessWidget {
                 });
           },
           child: const CustomRoundedCard(
-            icon: MyIcons.add,
+            icon: IconsAssets.add,
             text: 'Add Money',
             color: MyColors.mentGreen,
             fontWeight: FontWeight.w600,
             iconWidth: 32,
           ),
         ),
-        CustomRoundedCard(
-          icon: MyIcons.arrow,
+        const CustomRoundedCard(
+          icon: IconsAssets.arrow,
           text: 'Send money',
           color: MyColors.mentGreen,
           fontWeight: FontWeight.w600,
@@ -50,4 +51,3 @@ class HomeUpperSection extends StatelessWidget {
     );
   }
 }
-
