@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tap_cash/app_routes.dart';
-import 'package:tap_cash/constants/colors.dart';
-import 'package:tap_cash/constants/icons.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -24,16 +24,17 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: MyColors.mainColor,
       body: Center(
         child: Image.asset(
-          MyIcons.logo2,
+          IconsAssets.logo2,
         ),
       ),
     );
   }
 
+  // TO DO Check : User Have seen The onboarding Screen Before
   // Function to navigate to Home after 2 seconds.
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 2), () {
-      GoRouter.of(context).push(AppRouter.wallet);
+      GoRouter.of(context).push(AppRouter.onBoardScreen);
       // GoRouter.of(context).push(AppRouter.otpScreen);
     });
   }

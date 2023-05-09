@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../constants/colors.dart';
-import '../../constants/styles.dart';
+import '../../constants/colors_manager.dart';
+import '../../constants/styles_manager.dart';
 
 class CustomNumbersInput extends StatefulWidget {
   const CustomNumbersInput({Key? key}) : super(key: key);

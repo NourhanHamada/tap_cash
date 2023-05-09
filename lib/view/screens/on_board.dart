@@ -1,16 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tap_cash/app_routes.dart';
-import 'package:tap_cash/constants/icons.dart';
-import 'package:tap_cash/constants/images.dart';
-import 'package:tap_cash/constants/strings.dart';
-import 'package:tap_cash/constants/styles.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
+import 'package:tap_cash/constants/strings_manager.dart';
+import 'package:tap_cash/constants/styles_manager.dart';
+import 'package:tap_cash/controller/landing_controllers/onboarding_controller.dart';
 import 'package:tap_cash/view/utils/main_button.dart';
+import 'package:provider/provider.dart';
 
-import '../../constants/colors.dart';
+import '../../constants/colors_manager.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({Key? key}) : super(key: key);
@@ -20,34 +22,6 @@ class OnBoardScreen extends StatefulWidget {
 }
 
 class _OnBoardScreenState extends State<OnBoardScreen> {
-
-  var pageController = PageController();
-  int currentIndex = 0;
-  List<String> titles = [
-    'Smart wallet',
-    'Smart Card',
-    'Child\'s money management',
-    'House\'s money management',
-    'Debts',
-    'Donation & Helps',
-  ];
-  List<String> text = [
-    MyStrings.onboard1,
-    MyStrings.onboard2,
-    MyStrings.onboard3,
-    MyStrings.onboard4,
-    MyStrings.onboard5,
-    MyStrings.onboard6,
-  ];
-  List<String> images = [
-    MyImages.wallet,
-    MyImages.smartCard,
-    MyImages.adultWithBaby,
-    MyImages.money,
-    MyImages.debts,
-    MyImages.sendMoney
-  ];
-
   @override
   void initState() {
     // _checkIfSeen();
@@ -66,13 +40,18 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = Provider.of<StringsManager>(context);
+    final onboard = Provider.of<OnboardingController>(context);
+    final pagesContent = strings.stringsProvider(strings.getonBoardScreen);
+    final pagesCount = pagesContent['texts'].length;
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 24,
+            horizontal: 20,
+            vertical: 5,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,65 +59,68 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
               SizedBox(
                 height: 600.h,
                 child: PageView.builder(
-                  itemCount: text.length,
-                  controller: pageController,
+                  itemCount: pagesCount,
+                  controller: onboard.pageController,
+                  scrollBehavior: const CupertinoScrollBehavior(),
                   onPageChanged: (index) {
                     setState(() {
-                      currentIndex == index;
+                      onboard.currentIndex == index;
                     });
                   },
                   itemBuilder: (BuildContext context, int index) {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            index == 0
-                                ? Text(
-                                    'Let\'s go',
-                                    style: MyStyles.textStyle20.copyWith(
-                                      fontWeight: FontWeight.w600,
+                        SizedBox(
+                          height: 75,
+                          width: double.infinity,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              index == 0
+                                  ? Text(
+                                      'Let\'s go',
+                                      style: MyStyles.textStyle20.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    )
+                                  : InkWell(
+                                      child: Image.asset(
+                                        IconsAssets.arrowBack,
+                                        width: 24,
+                                      ),
+                                      onTap: () {
+                                        onboard.pageToPage(
+                                            context: context,
+                                            pagesCount: pagesCount,
+                                            next: false);
+                                      },
                                     ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Image.asset(
+                                    IconsAssets.logo2,
+                                    width: 46,
+                                  ),
+                                  Text(
+                                    'Tap Cash',
+                                    style: MyStyles.textStyle12.copyWith(
+                                        color: MyColors.mainColor,
+                                        fontWeight: FontWeight.w600),
                                   )
-                                : InkWell(
-                                  child: Image.asset(
-                                      MyIcons.arrowBack,
-                                      width: 24,
-                                    ),
-                              onTap: (){
-                                setState(() {
-                                  if(currentIndex < text.length -1){
-                                    currentIndex--;
-                                    print(currentIndex);
-                                    pageController.animateToPage(currentIndex, duration: const Duration(milliseconds: 400), curve: Curves.easeInBack);
-                                  }
-                                });
-                              },
-                                ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Image.asset(
-                                  MyIcons.logo2,
-                                  width: 46,
-                                ),
-                                Text(
-                                  'Tap Cash',
-                                  style: MyStyles.textStyle12.copyWith(
-                                      color: MyColors.mainColor,
-                                      fontWeight: FontWeight.w600),
-                                )
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 80.h,
                         ),
                         Image.asset(
-                          images[index],
+                          onboard.images[index],
                           height: 232.h,
                           width: 260,
                         ),
@@ -146,7 +128,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                           height: 40,
                         ),
                         Text(
-                          titles[index],
+                          pagesContent["titles"][index],
                           style: MyStyles.textStyle20.copyWith(
                             fontWeight: FontWeight.w600,
                             color: MyColors.mainColor,
@@ -158,7 +140,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                         SizedBox(
                           width: 315.w,
                           child: Text(
-                            text[index],
+                            pagesContent["texts"][index],
                             textAlign: TextAlign.center,
                             style: MyStyles.textStyle16.copyWith(
                               color: MyColors.mainColor,
@@ -175,8 +157,8 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                 height: 32,
               ),
               SmoothPageIndicator(
-                controller: pageController,
-                count: text.length,
+                controller: onboard.pageController,
+                count: pagesCount,
                 effect: WormEffect(
                   activeDotColor: MyColors.green,
                   dotColor: MyColors.lightGrey,
@@ -188,17 +170,12 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                 height: 40.h,
               ),
               MainButton(
-                text: currentIndex == text.length -1 ? "Get Started" :'Next',
+                text: onboard.currentIndex == pagesCount - 1
+                    ? "Get Started"
+                    : 'Next',
                 onPressed: () {
-                  setState(() {
-                    if(currentIndex < text.length -1){
-                      currentIndex++;
-                      print(currentIndex);
-                      pageController.animateToPage(currentIndex, duration: const Duration(milliseconds: 400), curve: Curves.easeInBack);
-                    } else {
-                    GoRouter.of(context).push(AppRouter.loginScreen);
-                    }
-                  });
+                  onboard.pageToPage(
+                      context: context, pagesCount: pagesCount, next: true);
                 },
               ),
             ],

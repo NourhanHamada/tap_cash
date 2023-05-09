@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart'; //for date locale
 import 'package:intl/intl.dart';
-import 'package:tap_cash/constants/colors.dart';
-import 'package:tap_cash/constants/icons.dart';
-import 'package:tap_cash/constants/styles.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
+import 'package:tap_cash/constants/styles_manager.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           GoRouter.of(context).pop();
                         },
                         icon: Image.asset(
-                          MyIcons.arrowBack1,
+                          IconsAssets.arrowBack1,
                           color: MyColors.white,
                           width: 16,
                         ),
@@ -69,7 +69,8 @@ class _WalletScreenState extends State<WalletScreen> {
                             ),
                           ),
                           IconButton(
-                              onPressed: () {}, icon: Image.asset(MyIcons.eye))
+                              onPressed: () {},
+                              icon: Image.asset(IconsAssets.eye))
                         ],
                       ),
                       const SizedBox(
@@ -96,7 +97,7 @@ class _WalletScreenState extends State<WalletScreen> {
                             width: 8,
                           ),
                           Image.asset(
-                            MyIcons.clock,
+                            IconsAssets.clock,
                             width: 16,
                           ),
                           const SizedBox(
@@ -112,9 +113,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         ],
                       ),
                       Row(
-                        children: [
-                          Text(DateTime.now().year.toString())
-                        ],
+                        children: [Text(DateTime.now().year.toString())],
                       )
                     ],
                   ),

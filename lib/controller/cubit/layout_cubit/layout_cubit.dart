@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tap_cash/constants/icons.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
 import 'package:tap_cash/models/user_models.dart';
 import 'package:tap_cash/view/screens/layout/history_screen.dart';
 import 'package:tap_cash/view/screens/layout/transfer_screen.dart';
@@ -18,7 +18,7 @@ class LayoutCubit extends Cubit<LayoutState> {
   var currentIndex = 0;
   List<String> titles = [];
 
-  List<Widget> screensMethod(User userInfo){
+  List<Widget> screensMethod(User userInfo) {
     return [
       HomeScreen(userInfo),
       TransferScreen(),
@@ -27,54 +27,52 @@ class LayoutCubit extends Cubit<LayoutState> {
     ];
   }
 
-
-
   List<BottomNavigationBarItem> bottomNavBarItems = [
     BottomNavigationBarItem(
       icon: Image.asset(
-        MyIcons.bank,
+        IconsAssets.bank,
         width: 24,
         height: 24,
       ),
       label: 'Home',
       activeIcon: Image.asset(
-        MyIcons.bankFilled,
+        IconsAssets.bankFilled,
         width: 24,
       ),
     ),
     BottomNavigationBarItem(
       icon: Image.asset(
-        MyIcons.transfer,
+        IconsAssets.transfer,
         width: 24,
         height: 24,
       ),
       label: 'Transfer',
       activeIcon: Image.asset(
-        MyIcons.transferFilled,
+        IconsAssets.transferFilled,
         width: 24,
       ),
     ),
     BottomNavigationBarItem(
       icon: Image.asset(
-        MyIcons.history,
+        IconsAssets.history,
         width: 24,
         height: 24,
       ),
       label: 'Transactions',
       activeIcon: Image.asset(
-        MyIcons.historyFilled,
+        IconsAssets.historyFilled,
         width: 24,
       ),
     ),
     BottomNavigationBarItem(
       icon: Image.asset(
-        MyIcons.user,
+        IconsAssets.user,
         width: 24,
         height: 24,
       ),
       label: 'Me',
       activeIcon: Image.asset(
-        MyIcons.userFilled,
+        IconsAssets.userFilled,
         width: 24,
       ),
     ),

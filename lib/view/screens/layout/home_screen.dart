@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tap_cash/constants/colors.dart';
-import 'package:tap_cash/constants/icons.dart';
+import 'package:tap_cash/constants/assets_manager.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
 import 'package:tap_cash/models/user_models.dart';
 import 'package:tap_cash/view/widgets/home_screen/home_grid_view.dart';
 import '../../utils/home_middle_card.dart';
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: HomeMiddleSectionCard(
-                icon: MyIcons.wannaThank2,
+                icon: IconsAssets.wannaThank2,
                 text: 'Wanna send thank!',
               ),
             ),
@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(2.0),
           child: Center(
             child: Image.asset(
-              MyIcons.ask,
+              IconsAssets.ask,
               width: 32,
             ),
           ),

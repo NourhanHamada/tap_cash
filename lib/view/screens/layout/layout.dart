@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tap_cash/constants/colors.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
 import 'package:tap_cash/controller/cubit/layout_cubit/layout_cubit.dart';
 import 'package:provider/provider.dart';
 import '../../../utility/shared_preference.dart';
@@ -26,9 +26,11 @@ class _LayOutState extends State<LayOut> {
             body: FutureBuilder(
               future: user.getUser(),
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                print("=======================================================");
+                print(
+                    "=======================================================");
                 print("this is the Snapshot Data = ${snapshot.data}");
-                print("=======================================================");
+                print(
+                    "=======================================================");
                 return cubit.screensMethod(snapshot.data)[cubit.currentIndex];
               },
             ),

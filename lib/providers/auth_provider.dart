@@ -17,18 +17,20 @@ enum Status {
 }
 
 class AuthProvider extends ChangeNotifier {
-  Status _loggedInStatus = Status.notLoggedIn; // Default Value
-  Status _registeredStatus = Status.notRegistered; // Default Value
+  Status loginStatus = Status.notLoggedIn; // Default Value
+  Status registerStatus = Status.notRegistered; // Default Value
 
-  Status get getLoggedInStatus => _loggedInStatus;
-  Status get getRegisteredStatus => _registeredStatus;
+  Status get getLoggedInStatus => loginStatus;
+  Status get getRegisteredStatus => registerStatus;
 
-  set setLoggedInStatus(Status value) {
-    _loggedInStatus = value;
+  setLoginStatus(Status value) {
+    loginStatus = value;
+    notifyListeners();
   }
 
-  set setRegisteredStatus(Status value) {
-    _registeredStatus = value;
+  setRegisterStatus(Status value) {
+    registerStatus = value;
+    notifyListeners();
   }
 
   Future<Map<String, dynamic>> register(
@@ -37,9 +39,6 @@ class AuthProvider extends ChangeNotifier {
 
     Uri url = Uri.parse(
         "https://battaria.glowrank.com/api/auth/register?name=$name&email=$email&password=$password");
-    print(name);
-    print(email);
-    print(password);
 
     http.Response response = await http.post(url, headers: headers);
     Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -47,7 +46,7 @@ class AuthProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       print(responseData);
       User authUser = User.fromJson(responseData);
-      UserPerferences().saveUser(authUser);
+      // UserPerferences().saveUser(authUser);
       return {
         'status': true,
         'message': "Successfuly registered",
@@ -63,8 +62,11 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<Map<String, dynamic>> login(String? email, String? password) async {
+    print("1:$email");
+    print("1:$password");
+
     final Map<String, String> headers = {'Content-Type': 'application/json'};
-    _loggedInStatus = Status.authenticating;
+    loginStatus = Status.authenticating;
     notifyListeners();
     Uri url = Uri.parse(
         "https://battaria.glowrank.com/api/auth/login?email=$email&password=$password");
@@ -73,7 +75,7 @@ class AuthProvider extends ChangeNotifier {
     final Map<String, dynamic> responseData = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
-      _loggedInStatus = Status.loggedIn;
+      loginStatus = Status.loggedIn;
       notifyListeners();
       print(responseData);
       // User authUser = User.fromJson(responseData);
@@ -84,7 +86,7 @@ class AuthProvider extends ChangeNotifier {
         'data': responseData
       };
     } else {
-      _loggedInStatus = Status.notLoggedIn;
+      loginStatus = Status.notLoggedIn;
       notifyListeners();
       return {'status': false, 'message': responseData['message']};
     }
@@ -99,18 +101,44 @@ class AuthProvider extends ChangeNotifier {
     final Map<String, dynamic> responseData = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
-      _loggedInStatus = Status.loggedIn;
+      loginStatus = Status.loggedIn;
       notifyListeners();
       print(responseData);
-      return {
-        'status': true,
-        'message': "Successfuly Email verification",
-        'data': responseData
-      };
+      return {'status': true, 'message': responseData['message']};
     } else {
-      _loggedInStatus = Status.notLoggedIn;
+      loginStatus = Status.notLoggedIn;
       notifyListeners();
       return {'status': false, 'message': responseData['message']};
+    }
+  }
+
+  Future<Map<String, dynamic>> resetPassword(
+      String? email, String? otp, String? password) async {
+    final Map<String, String> headers = {'Content-Type': 'application/json'};
+
+    Uri url = Uri.parse(
+        "https://battaria.glowrank.com/api/reset-password?email=$email&otp=$otp&password=$password&password_confirmation=$password");
+    print(otp);
+    print(email);
+    print(password);
+
+    http.Response response = await http.post(url, headers: headers);
+    Map<String, dynamic> responseData = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      print(responseData);
+      // UserPerferences().saveUser(authUser);
+      return {
+        'status': true,
+        'message': responseData["message"],
+      };
+    } else {
+      print(responseData);
+
+      return {
+        'status': false,
+        'message': responseData["message"],
+      };
     }
   }
 }
