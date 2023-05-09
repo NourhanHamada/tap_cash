@@ -22,7 +22,9 @@ class _LayOutState extends State<LayOut> {
       builder: (context, state) {
         LayoutCubit cubit = BlocProvider.of(context);
         return Scaffold(
-          body: FutureBuilder(
+          body:
+          // cubit.screens[cubit.currentIndex],
+          FutureBuilder(
             future: user.getUser(),
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               print("=======================================================");

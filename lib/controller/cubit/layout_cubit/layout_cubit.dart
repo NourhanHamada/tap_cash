@@ -27,6 +27,13 @@ class LayoutCubit extends Cubit<LayoutState> {
     ];
   }
 
+  // List<Widget>screens = [
+  //   HomeScreen(),
+  //   TransferScreen(),
+  //   HistoryScreen(),
+  //   UserScreen(),
+  // ];
+
 
 
   List<BottomNavigationBarItem> bottomNavBarItems = [
