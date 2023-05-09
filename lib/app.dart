@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tap_cash/app_routes.dart';
 import 'package:tap_cash/constants/colors_manager.dart';
-
 import 'controller/cubit/layout_cubit/layout_cubit.dart';
 import 'controller/cubit/wallet_cubit/wallet_cubit.dart';
 
