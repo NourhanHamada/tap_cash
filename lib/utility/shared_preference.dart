@@ -11,14 +11,15 @@ class UserPerferences extends ChangeNotifier {
   }
 
   Future<void> saveUser(User user, String screenName) async {
+    // Select shared pre fun
     switch (screenName) {
       case AppRouter.onBoardScreen:
         prefs.setBool('seen', true);
         break;
       case AppRouter.loginScreen:
         prefs.setString("email", user.email!);
-        // prefs.setString("password", user.password!);
-        // prefs.setString("token", user.token!);
+        prefs.setString("password", user.password!);
+        prefs.setString("token", user.token!);
         break;
       case AppRouter.signupScreen:
         prefs.setString("firstName", user.firstName!);

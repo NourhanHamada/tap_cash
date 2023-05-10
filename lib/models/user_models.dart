@@ -3,6 +3,7 @@ class User {
   String? lastName;
   String? email;
   String? phone;
+  String? password;
   String? token;
   // String? renewalToken;
   // bool? onboardingSeen;
@@ -12,17 +13,19 @@ class User {
     this.lastName,
     this.email,
     this.phone,
+    this.password,
     this.token,
     // this.renewalToken,
   });
 
   factory User.fromJson(Map<String, dynamic> responseData) {
     return User(
-      firstName: responseData['firstName'],
-      lastName: responseData['lastName'],
-      email: responseData['email'],
-      phone: responseData['phone'],
-      token: responseData['token'],
+      firstName: responseData['user']['firstName'],
+      lastName: responseData['user']['lastName'],
+      email: responseData['user']['email'],
+      phone: responseData['user']['phone'],
+      password: responseData['user']['password'],
+      token: responseData['user']['token'],
     );
     // renewalToken: responseData['renewalToken']);
   }

@@ -54,13 +54,13 @@ class AuthProvider extends ChangeNotifier {
       return {
         'status': true,
         'message': "Successfuly registered",
-        'data': authUser
+        'user': authUser
       };
     } else {
       return {
         'status': false,
         'message': "UnSuccessfuly registered",
-        'data': responseData
+        'user': responseData
       };
     }
   }
