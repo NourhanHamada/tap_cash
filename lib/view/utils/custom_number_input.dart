@@ -84,8 +84,8 @@ class _CustomNumbersInputState extends State<CustomNumbersInput> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: activeCode[index] == true
-                        ? Color(0xFF26BAEE)
-                        : Color(0xFFEAEEF1),
+                        ? const Color(0xFF26BAEE)
+                        : const Color(0xFFEAEEF1),
                   ),
                 ),
               );
@@ -123,9 +123,6 @@ class _CustomNumbersInputState extends State<CustomNumbersInput> {
                               print(result.join());
                             }
                           });
-                          // print(zero.toString());
-                          result.add(zero.toString());
-                          print(result.join());
                         },
                         child: Text(
                           zero.toString(),

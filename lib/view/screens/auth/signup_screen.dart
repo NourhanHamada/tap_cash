@@ -218,13 +218,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         signupController.isPasswordVisible ? false : true,
                     textInputType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
-                      icon: isPasswordVisible
-                          ? Image.asset(IconsAssets.eye, color: MyColors.mainColor,width: 24,)
-                          : Image.asset(IconsAssets.eyeClosed, color: MyColors.mainColor,width: 24,),
+                      icon: signupController.isPasswordVisible
+                          ? Image.asset(
+                              IconsAssets.eye,
+                              color: MyColors.mainColor,
+                              width: 24,
+                            )
+                          : Image.asset(
+                              IconsAssets.eyeClosed,
+                              color: MyColors.mainColor,
+                              width: 24,
+                            ),
                       onPressed: () {
-                        setState(() {
-                          signupController.isPasswordVisible;
-                        });
+                        signupController.isPasswordVisible;
                       },
                     ),
                   ),
@@ -270,10 +276,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
                       icon: signupController.isRepeatPasswordVisible
-                          ? Image.asset(IconsAssets.eye, color: MyColors.mainColor,width: 24,)
-                          : Image.asset(IconsAssets.eyeClosed, color: MyColors.mainColor,width: 24,),
+                          ? Image.asset(
+                              IconsAssets.eye,
+                              color: MyColors.mainColor,
+                              width: 24,
+                            )
+                          : Image.asset(
+                              IconsAssets.eyeClosed,
+                              color: MyColors.mainColor,
+                              width: 24,
+                            ),
                       onPressed: () {
-                        signupController.isPasswordVisible;
+                        signupController.isRepeatPasswordVisible;
                       },
                     ),
                   ),

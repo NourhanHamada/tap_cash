@@ -28,30 +28,6 @@ class PasscodeScreen extends StatelessWidget {
                 color: MyColors.grey,
               ),
             ),
-            // SizedBox(
-            //   height: 50,
-            //   width: double.infinity,
-            //   child: Center(
-            //     child: ListView.builder(
-            //       scrollDirection: Axis.horizontal,
-            //       shrinkWrap: true,
-            //       itemCount: 5,
-            //       itemBuilder: (BuildContext context, int index) {
-            //         return Padding(
-            //           padding: const EdgeInsets.all(5.0),
-            //           child: Container(
-            //             height: 25,
-            //             width: 25,
-            //             decoration: const BoxDecoration(
-            //               shape: BoxShape.circle,
-            //               color: Color(0xFFEAEEF1),
-            //             ),
-            //           ),
-            //         );
-            //       },
-            //     ),
-            //   ),
-            // ),
             const CustomNumbersInput(),
           ],
         ),

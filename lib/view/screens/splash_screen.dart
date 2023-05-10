@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
   // Function to navigate to Home after 2 seconds.
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 2), () {
-      GoRouter.of(context).push(AppRouter.onBoardScreen);
+      GoRouter.of(context).push(AppRouter.passcode);
 //       GoRouter.of(context).push(AppRouter.childLogin);
       // GoRouter.of(context).push(AppRouter.otpScreen);
     });
