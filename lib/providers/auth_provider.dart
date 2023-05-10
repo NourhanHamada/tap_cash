@@ -34,11 +34,15 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<Map<String, dynamic>> register(
-      String? name, String? email, String? password) async {
+      {String? firstName,
+      String? lastName,
+      String? email,
+      String? phone,
+      String? password}) async {
     final Map<String, String> headers = {'Content-Type': 'application/json'};
 
     Uri url = Uri.parse(
-        "https://battaria.glowrank.com/api/auth/register?name=$name&email=$email&password=$password");
+        "https://battaria.glowrank.com/api/auth/register?lastName=$lastName&email=$email&password=$password&firstName=$firstName&phone=$phone");
 
     http.Response response = await http.post(url, headers: headers);
     Map<String, dynamic> responseData = jsonDecode(response.body);
