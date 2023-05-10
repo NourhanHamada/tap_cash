@@ -10,6 +10,7 @@ class ImageAssets {
   static const String smartCard = '$imagePath/smart_card_blue.png';
   static const String wallet = '$imagePath/wallet.png';
   static const String background = 'assets/images/background.png';
+  static const String door = 'assets/images/door.png';
 }
 
 class IconsAssets {
@@ -50,4 +51,14 @@ class IconsAssets {
   static const String arrowBack0 = 'assets/icons/arrow_back0.png';
   static const String arrowForward0 = 'assets/icons/arrow_forward0.png';
   static const String fingerPrint00 = 'assets/icons/fingerprint00.png';
+  static const String instaPay = 'assets/icons/insta_pay.png';
+  static const String telda = 'assets/icons/telda.png';
+  static const String orangeCash = 'assets/icons/orange_cash.png';
+  static const String fawry = 'assets/icons/fawry.png';
+  static const String localBank = 'assets/icons/local_bank.png';
+  static const String tapCash = 'assets/icons/tap_cash.png';
+  static const String running = 'assets/icons/running.png';
+  static const String runner = 'assets/icons/runner.png';
+  static const String google = 'assets/icons/google.png';
+  static const String arrowChild = 'assets/icons/arrow_child.png';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tap_cash/constants/colors_manager.dart';
 
 import '../../constants/styles_manager.dart';
 
@@ -20,8 +21,8 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 46,
-      height: 52,
+      width: 42,
+      height: 42,
       child: TextFormField(
         validator: validator,
         onChanged: (value) {
@@ -32,7 +33,7 @@ class CustomTextField extends StatelessWidget {
         onSaved: onSaved,
         controller: controller,
         focusNode: focusNode,
-        style: MyStyles.textStyle20,
+        style: TextStyle(color: MyColors.mainColor, fontSize: 14,),
         textAlign: TextAlign.center,
         keyboardType: TextInputType.name,
         inputFormatters: [
@@ -43,7 +44,11 @@ class CustomTextField extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
             ),
-            hintText: '0'),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: MyColors.mainColor, width: 1.5)
+          ),
+
+        ),
       ),
     );
   }

@@ -81,8 +81,46 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.all(90.0),
                   child: Image.asset(
                     ImageAssets.key,
-                    width: 180.w,
+                    width: 150.w,
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      height: 1,
+                      color: MyColors.mainColor,
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Image.asset(
+                      IconsAssets.google,
+                      width: 24,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      'Or',
+                      style: MyStyles.textStyle12.copyWith(
+                        color: MyColors.mainColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      height: 1,
+                      color: MyColors.mainColor,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 40,
                 ),
                 Form(
                   key: loginController.formKey,
@@ -133,8 +171,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             loginController.isPasswordVisible ? false : true,
                         suffixIcon: IconButton(
                           icon: loginController.isPasswordVisible
-                              ? const Icon(Icons.visibility)
-                              : const Icon(Icons.visibility_off),
+                              ? Image.asset(
+                                  IconsAssets.eye,
+                                  color: MyColors.mainColor,
+                                  width: 24,
+                                )
+                              : Image.asset(
+                                  IconsAssets.eyeClosed,
+                                  color: MyColors.mainColor,
+                                  width: 24,
+                                ),
                           onPressed: loginController.passwordVisiblity,
                         ),
                         textInputType: TextInputType.visiblePassword,
@@ -172,7 +218,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               'Forgot password?',
                               style: MyStyles.textStyle14.copyWith(
-                                color: MyColors.grey,
+                                color: MyColors.mainColor,
                                 decoration: TextDecoration.underline,
                               ),
                             ),
@@ -221,6 +267,45 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 48,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: MyColors.babyBlue,
+                            width: 5,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                            20,
+                          ),
+                        ),
+                        child: const Text(
+                          'As a son',
+                          style: MyStyles.textStyle20,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).push(AppRouter.layout);
+                      },
+                      child: const Text(
+                        'Skip',
+                        style: MyStyles.textStyle20,
+                      ),
+                    )
                   ],
                 ),
               ],
