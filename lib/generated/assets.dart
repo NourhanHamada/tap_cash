@@ -30,6 +30,8 @@ class Assets {
   static const String iconsHistory = 'assets/icons/history.png';
   static const String iconsHistoryFilled = 'assets/icons/history_filled.png';
   static const String iconsHousesMoney = 'assets/icons/houses_money.png';
+  static const String iconsImg = 'assets/icons/special_love.png';
+  static const String iconsImg1 = 'assets/icons/flower.png';
   static const String iconsInstaPay = 'assets/icons/insta_pay.png';
   static const String iconsLetsGo = 'assets/icons/lets_go.png';
   static const String iconsLocalBank = 'assets/icons/local_bank.png';
@@ -53,7 +55,7 @@ class Assets {
   static const String imagesAdultWithBaby = 'assets/images/adult_with_baby.png';
   static const String imagesBackground = 'assets/images/background.png';
   static const String imagesDebts = 'assets/images/debts.png';
-  static const String imagesImg = 'assets/images/door.png';
+  static const String imagesDoor = 'assets/images/door.png';
   static const String imagesKey = 'assets/images/key.png';
   static const String imagesMoney = 'assets/images/money.png';
   static const String imagesSendMoney = 'assets/images/send_money.png';

@@ -61,4 +61,6 @@ class IconsAssets {
   static const String runner = 'assets/icons/runner.png';
   static const String google = 'assets/icons/google.png';
   static const String arrowChild = 'assets/icons/arrow_child.png';
+  static const String specialLove = 'assets/icons/special_love.png';
+  static const String flower = 'assets/icons/flower.png';
 }
