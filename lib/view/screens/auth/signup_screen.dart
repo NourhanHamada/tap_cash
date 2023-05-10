@@ -5,8 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:tap_cash/app_routes.dart';
 import 'package:tap_cash/constants/colors_manager.dart';
 import 'package:tap_cash/constants/styles_manager.dart';
+import 'package:tap_cash/controller/auth_controllers/signUp_controller.dart';
 import 'package:tap_cash/models/user_models.dart';
 import 'package:tap_cash/providers/auth_provider.dart';
+import 'package:tap_cash/utility/validator.dart';
 import 'package:tap_cash/view/utils/custom_text_form_field.dart';
 import 'package:tap_cash/view/utils/main_button.dart';
 import 'package:provider/provider.dart';
@@ -21,67 +23,11 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _firstnameController = TextEditingController();
-  final _lastnameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _repeatPasswordController = TextEditingController();
-  final _firstnameFocusNode = FocusNode();
-  final _lastnameFocusNode = FocusNode();
-  final _phoneFocusNode = FocusNode();
-  final _emailFocusNode = FocusNode();
-  final _passwordFocusNode = FocusNode();
-  final _repeatPasswordFocusNode = FocusNode();
-  bool isChecked = false;
-  bool isPasswordVisible = false;
-  bool isRepeatPasswordVisible = false;
-  String? name;
-  String? email;
-  String? password;
-  String? passwordValue;
-  String? repeatPasswordValue;
-
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthProvider>(context);
-    void register() {
-      final form = _formKey.currentState;
-      if (form!.validate() && isChecked == true) {
-        form.save();
-        auth.register(name, email, password).then((response) {
-          if (response['status']) {
-            User user = response['data'];
-            auth.setRegisterStatus(Status.registered);
-            auth.verification(user.email).then((response) {
-              if (response['status']) {
-                User user = response['data'];
-                GoRouter.of(context).pushReplacement(AppRouter.otpScreen);
-              } else {
-                Flushbar(
-                        title: "Registered Failed",
-                        message: response.toString(),
-                        duration: const Duration(seconds: 100))
-                    .show(context);
-              }
-            });
-          } else {
-            Flushbar(
-                    title: "Registered Failed",
-                    message: response.toString(),
-                    duration: const Duration(seconds: 100))
-                .show(context);
-          }
-        });
-      } else {
-        Flushbar(
-                title: "Invalid Form",
-                message: 'please complete the form properly',
-                duration: const Duration(seconds: 100))
-            .show(context);
-      }
-    }
+    final signupController = Provider.of<SignUpController>(context);
+    final validator = Provider.of<Validator>(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -90,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           padding: const EdgeInsets.all(30.0),
           child: SingleChildScrollView(
             child: Form(
-              key: _formKey,
+              key: signupController.formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -133,16 +79,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       =========================================
                       */
                   CustomTextFormField(
-                    controller: _firstnameController,
-                    focusNode: _firstnameFocusNode,
-                    validator: (firstNameValue) => firstNameValue!.isEmpty
-                        ? 'Please Enter Your First name'
-                        : null,
-                    onSaved: (namevalue) {
-                      name = namevalue;
+                    controller: signupController.firstnameController,
+                    focusNode: signupController.firstnameFocusNode,
+                    validator: (firstNameValue) {
+                      var msg = validator.validatename(
+                          firstNameValue, NameType.firstName);
+                      return msg;
                     },
-                    onEditingComplete: () =>
-                        FocusScope.of(context).requestFocus(_lastnameFocusNode),
+                    onSaved: (firstNameValue) {
+                      signupController.setFirstName(firstNameValue);
+                    },
+                    onEditingComplete: () => FocusScope.of(context)
+                        .requestFocus(signupController.lastnameFocusNode),
                     textInputAction: TextInputAction.next,
                     labelText: 'First name',
                     obscureText: false,
@@ -162,13 +110,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       =========================================
                       */
                   CustomTextFormField(
-                    controller: _lastnameController,
-                    focusNode: _lastnameFocusNode,
-                    validator: (lastNameValue) => lastNameValue!.isEmpty
-                        ? 'Please Enter Your Last name'
-                        : null,
-                    onEditingComplete: () =>
-                        FocusScope.of(context).requestFocus(_emailFocusNode),
+                    controller: signupController.lastnameController,
+                    focusNode: signupController.lastnameFocusNode,
+                    validator: (lastNameValue) {
+                      var msg = validator.validatename(
+                          lastNameValue, NameType.lastName);
+                      return msg;
+                    },
+                    onSaved: (lastNameValue) {
+                      signupController.setLasttName(lastNameValue);
+                    },
+                    onEditingComplete: () => FocusScope.of(context)
+                        .requestFocus(signupController.emailFocusNode),
                     textInputAction: TextInputAction.next,
                     labelText: 'Last name',
                     obscureText: false,
@@ -188,20 +141,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       =========================================
                       */
                   CustomTextFormField(
-                    controller: _emailController,
-                    focusNode: _emailFocusNode,
+                    controller: signupController.emailController,
+                    focusNode: signupController.emailFocusNode,
                     validator: (emailValue) {
-                      if (emailValue!.isEmpty) {
-                        return 'Enter correct Email';
-                      } else {
-                        return null;
-                      }
+                      var msg = validator.validateEmail(emailValue);
+                      return msg;
                     },
                     onSaved: (emailValue) {
-                      email = emailValue;
+                      signupController.setEmail(emailValue);
                     },
-                    onEditingComplete: () =>
-                        FocusScope.of(context).requestFocus(_phoneFocusNode),
+                    onEditingComplete: () => FocusScope.of(context)
+                        .requestFocus(signupController.phoneFocusNode),
                     textInputAction: TextInputAction.next,
                     labelText: 'Email',
                     obscureText: false,
@@ -221,12 +171,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       =========================================
                       */
                   CustomTextFormField(
-                    controller: _phoneController,
-                    focusNode: _phoneFocusNode,
-                    validator: (phoneValue) =>
-                        phoneValue!.isEmpty ? 'Please Enter Your Phone' : null,
-                    onEditingComplete: () =>
-                        FocusScope.of(context).requestFocus(_passwordFocusNode),
+                    controller: signupController.phoneController,
+                    focusNode: signupController.phoneFocusNode,
+                    validator: (phoneValue) {
+                      var msg = validator.validatePhone(phoneValue);
+                      return msg;
+                    },
+                    onSaved: (phoneValue) {
+                      signupController.setPhone(phoneValue);
+                    },
+                    onEditingComplete: () => FocusScope.of(context)
+                        .requestFocus(signupController.passwordFocusNode),
                     textInputAction: TextInputAction.next,
                     labelText: 'Phone',
                     obscureText: false,
@@ -246,21 +201,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       =========================================
                       */
                   CustomTextFormField(
-                    controller: _passwordController,
-                    focusNode: _passwordFocusNode,
+                    controller: signupController.passwordController,
+                    focusNode: signupController.passwordFocusNode,
                     validator: (passwordVal) {
-                      passwordValue = passwordVal;
-                      if (passwordVal!.isEmpty) {
-                        return 'Enter correct password';
-                      } else {
-                        return null;
-                      }
+                      var msg = validator.validatePhone(passwordVal);
+                      return msg;
+                    },
+                    onSaved: (passwordValue) {
+                      signupController.setPassword(passwordValue);
                     },
                     onEditingComplete: () => FocusScope.of(context)
-                        .requestFocus(_repeatPasswordFocusNode),
+                        .requestFocus(signupController.repeatPasswordFocusNode),
                     textInputAction: TextInputAction.next,
                     labelText: 'Password',
-                    obscureText: isPasswordVisible ? false : true,
+                    obscureText:
+                        signupController.isPasswordVisible ? false : true,
                     textInputType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
                       icon: isPasswordVisible
@@ -268,7 +223,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           : Image.asset(IconsAssets.eyeClosed, color: MyColors.mainColor,width: 24,),
                       onPressed: () {
                         setState(() {
-                          isPasswordVisible = !isPasswordVisible;
+                          signupController.isPasswordVisible;
                         });
                       },
                     ),
@@ -287,33 +242,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       =========================================
                       */
                   CustomTextFormField(
-                    controller: _repeatPasswordController,
-                    focusNode: _repeatPasswordFocusNode,
+                    controller: signupController.repeatPasswordController,
+                    focusNode: signupController.repeatPasswordFocusNode,
                     textInputAction: TextInputAction.done,
                     validator: (repeatPasswordVal) {
-                      repeatPasswordValue = repeatPasswordVal;
-                      if (repeatPasswordVal!.isEmpty) {
-                        return 'Please Enter Your Repeat Password';
-                      } else if (passwordValue != repeatPasswordValue) {
-                        return 'Password not match';
+                      var msg = validator.validatePhone(repeatPasswordVal);
+                      if (msg == null) {
+                        if (signupController.passwordValue !=
+                            signupController.repeatPasswordValue) {
+                          return 'Password not match';
+                        } else {
+                          return null;
+                        }
                       } else {
-                        return null;
+                        return msg;
                       }
                     },
-                    onSaved: (repeatPasswordVal) {
-                      password = repeatPasswordVal;
+                    onSaved: (repeatPasswordValue) {
+                      signupController.passwordValue == repeatPasswordValue
+                          ? signupController
+                              .setRepeatPassword(repeatPasswordValue)
+                          : null;
                     },
                     labelText: 'Repeat Password',
-                    obscureText: isRepeatPasswordVisible ? false : true,
+                    obscureText:
+                        signupController.isRepeatPasswordVisible ? false : true,
                     textInputType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
-                      icon: isRepeatPasswordVisible
+                      icon: signupController.isRepeatPasswordVisible
                           ? Image.asset(IconsAssets.eye, color: MyColors.mainColor,width: 24,)
                           : Image.asset(IconsAssets.eyeClosed, color: MyColors.mainColor,width: 24,),
                       onPressed: () {
-                        setState(() {
-                          isRepeatPasswordVisible = !isRepeatPasswordVisible;
-                        });
+                        signupController.isPasswordVisible;
                       },
                     ),
                   ),
@@ -333,12 +293,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Row(
                     children: [
                       Checkbox(
-                        value: isChecked,
+                        value: signupController.isChecked,
                         onChanged: (value) {
-                          isChecked = value!;
-                          setState(() {
-                            isChecked != isChecked;
-                          });
+                          signupController.isChecked;
                         },
                         materialTapTargetSize: MaterialTapTargetSize.padded,
                         visualDensity: VisualDensity.compact,
@@ -372,7 +329,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   MainButton(
                       text: "Sign Up",
                       onPressed: () {
-                        register();
+                        signupController.register(auth, context);
                       }),
                   /*
                       ========================

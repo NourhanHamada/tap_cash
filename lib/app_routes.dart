@@ -32,10 +32,6 @@ abstract class AppRouter {
         path: '/',
         builder: (context, state) => const SplashScreen(),
       ),
-      // GoRoute(
-      //   path: '/landingScreen',
-      //   builder: (context, state) => const LandingPage(),
-      // ),
       GoRoute(
         path: loginScreen,
         builder: (context, state) => const LoginScreen(),
