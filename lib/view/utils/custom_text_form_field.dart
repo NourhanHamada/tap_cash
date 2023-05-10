@@ -9,7 +9,6 @@ class CustomTextFormField extends StatelessWidget {
       this.border,
       this.textInputAction,
       this.validator,
-      this.textStyle,
       this.inputFormatter,
       required this.focusNode,
       this.onChanged,
@@ -32,7 +31,6 @@ class CustomTextFormField extends StatelessWidget {
   InputBorder? border;
   void Function(String)? onChanged;
   void Function(String?)? onSaved;
-  var textStyle;
   var inputFormatter;
 
   @override
@@ -59,7 +57,11 @@ class CustomTextFormField extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10),
           child: Text(labelText),
         ),
-        labelStyle: textStyle,
+        labelStyle: const TextStyle(
+          color: MyColors.mainColor,
+          fontWeight: FontWeight.w500,
+          fontSize: 14
+        ),
       ),
     );
   }
