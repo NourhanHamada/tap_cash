@@ -190,6 +190,8 @@ class _NewPasswordState extends State<NewPassword> {
                   ===========================
                   */
                   MainButton(
+                      backgroundColor: MyColors.mainColor,
+                      textColor: MyColors.white,
                       text: "Done",
                       onPressed: () {
                         resetController.resetPassword(auth, context);

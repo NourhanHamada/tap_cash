@@ -370,10 +370,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ===========================
                       */
                   MainButton(
+                      backgroundColor: MyColors.mainColor,
+                      textColor: MyColors.white,
                       text: "Sign Up",
                       onPressed: () {
                         register();
                       }),
+
                   /*
                       ========================
                       = The Login Button Ends

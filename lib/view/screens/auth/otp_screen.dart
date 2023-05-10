@@ -199,6 +199,8 @@ class _OTPScreenState extends State<OTPScreen> {
                   ===========================
                   */
                   MainButton(
+                      backgroundColor: MyColors.mainColor,
+                      textColor: MyColors.white,
                       text: "Send",
                       onPressed: () {
                         resetController.otpMethod(

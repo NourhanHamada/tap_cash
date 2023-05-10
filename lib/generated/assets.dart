@@ -26,12 +26,12 @@ class Assets {
   static const String iconsFingerPrint = 'assets/icons/finger_print.png';
   static const String iconsFingerPrint1 = 'assets/icons/finger_print1.svg';
   static const String iconsFingerprint00 = 'assets/icons/fingerprint00.png';
+  static const String iconsFlower = 'assets/icons/flower.png';
   static const String iconsGoogle = 'assets/icons/google.png';
   static const String iconsHistory = 'assets/icons/history.png';
   static const String iconsHistoryFilled = 'assets/icons/history_filled.png';
   static const String iconsHousesMoney = 'assets/icons/houses_money.png';
   static const String iconsImg = 'assets/icons/special_love.png';
-  static const String iconsImg1 = 'assets/icons/flower.png';
   static const String iconsInstaPay = 'assets/icons/insta_pay.png';
   static const String iconsLetsGo = 'assets/icons/lets_go.png';
   static const String iconsLocalBank = 'assets/icons/local_bank.png';

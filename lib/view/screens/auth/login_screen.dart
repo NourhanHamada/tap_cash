@@ -283,6 +283,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ===========================
                         */
                 MainButton(
+                    backgroundColor: MyColors.mainColor,
+                    textColor: MyColors.white,
                     text: "Login",
                     onPressed: () {
                       loginController.login(auth, context);

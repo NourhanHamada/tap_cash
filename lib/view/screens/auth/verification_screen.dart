@@ -136,7 +136,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           auth: auth,
                           context: context,
                         );
-                      }),
+                      },
+                    backgroundColor: MyColors.mainColor,
+                    textColor: MyColors.white,
+                  ),
                   /*
                   ========================
                   = The Login Button Ends

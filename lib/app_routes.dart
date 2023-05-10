@@ -4,7 +4,9 @@ import 'package:tap_cash/view/screens/auth/new_password_screen.dart';
 import 'package:tap_cash/view/screens/auth/otp_screen.dart';
 import 'package:tap_cash/view/screens/auth/signup_screen.dart';
 import 'package:tap_cash/view/screens/auth/verification_screen.dart';
+import 'package:tap_cash/view/screens/child_screens/child_home.dart';
 import 'package:tap_cash/view/screens/child_screens/child_login.dart';
+import 'package:tap_cash/view/screens/child_screens/child_username.dart';
 import 'package:tap_cash/view/screens/layout/layout.dart';
 import 'package:tap_cash/view/screens/on_board.dart';
 import 'package:tap_cash/view/screens/passcode_screen.dart';
@@ -25,6 +27,8 @@ abstract class AppRouter {
   static const String passcode = '/passcode';
   static const String wallet = '/wallet';
   static const String childLogin = '/childLogin';
+  static const String childUsername = '/childUsername';
+  static const String childHome = '/childHome';
 
   static final router = GoRouter(
     routes: [
@@ -75,6 +79,14 @@ abstract class AppRouter {
       GoRoute(
         path: childLogin,
         builder: (context, state) => const ChildLogin(),
+      ),
+      GoRoute(
+        path: childUsername,
+        builder: (context, state) => const ChildUsername(),
+      ),
+      GoRoute(
+        path: childHome,
+        builder: (context, state) => const ChildHome(),
       ),
     ],
   );

@@ -177,6 +177,8 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                   onboard.pageToPage(
                       context: context, pagesCount: pagesCount, next: true);
                 },
+                backgroundColor: MyColors.mainColor,
+                textColor: MyColors.white,
               ),
             ],
           ),

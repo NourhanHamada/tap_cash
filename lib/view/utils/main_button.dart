@@ -6,10 +6,12 @@ import 'package:tap_cash/constants/styles_manager.dart';
 class MainButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
+  final Color backgroundColor;
+  final Color textColor;
   const MainButton({
     Key? key,
     required this.text,
-    required this.onPressed,
+    required this.onPressed, required this.backgroundColor, required this.textColor,
   }) : super(key: key);
 
   @override
@@ -18,12 +20,12 @@ class MainButton extends StatelessWidget {
       width: 500,
       height: 50.0,
       decoration: BoxDecoration(
-          color: MyColors.mainColor, borderRadius: BorderRadius.circular(23)),
+          color: backgroundColor, borderRadius: BorderRadius.circular(23)),
       child: TextButton(
         onPressed: onPressed,
         child: Text(
           text,
-          style: MyStyles.textStyle16.copyWith(color: Colors.white, fontWeight: FontWeight.bold,),
+          style: MyStyles.textStyle16.copyWith(color: textColor, fontWeight: FontWeight.bold,),
         ),
       ),
     );
