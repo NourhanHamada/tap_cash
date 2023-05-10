@@ -11,6 +11,8 @@ import 'package:tap_cash/view/utils/custom_text_form_field.dart';
 import 'package:tap_cash/view/utils/main_button.dart';
 import 'package:provider/provider.dart';
 
+import '../../../constants/assets_manager.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
@@ -262,8 +264,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
                       icon: isPasswordVisible
-                          ? const Icon(Icons.visibility)
-                          : const Icon(Icons.visibility_off),
+                          ? Image.asset(IconsAssets.eye, color: MyColors.mainColor,width: 24,)
+                          : Image.asset(IconsAssets.eyeClosed, color: MyColors.mainColor,width: 24,),
                       onPressed: () {
                         setState(() {
                           isPasswordVisible = !isPasswordVisible;
@@ -306,8 +308,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
                       icon: isRepeatPasswordVisible
-                          ? const Icon(Icons.visibility)
-                          : const Icon(Icons.visibility_off),
+                          ? Image.asset(IconsAssets.eye, color: MyColors.mainColor,width: 24,)
+                          : Image.asset(IconsAssets.eyeClosed, color: MyColors.mainColor,width: 24,),
                       onPressed: () {
                         setState(() {
                           isRepeatPasswordVisible = !isRepeatPasswordVisible;
