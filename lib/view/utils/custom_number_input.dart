@@ -26,8 +26,19 @@ class _CustomNumbersInputState extends State<CustomNumbersInput> {
   ];
   int zero = 0;
   List<String> result = [];
+  var activeCodenum = 0;
+  List<bool> activeCode = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+
   late String passCode;
-  final StreamController<bool> _verificationNotifier = StreamController<bool>.broadcast();
+  final StreamController<bool> _verificationNotifier =
+      StreamController<bool>.broadcast();
 
   @override
   Widget build(BuildContext context) {
@@ -55,60 +66,97 @@ class _CustomNumbersInputState extends State<CustomNumbersInput> {
     //     ),
     //   ),
     // );
-    return SizedBox(
-      height: 450,
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 40,
-          mainAxisExtent: 90,
+    return Column(children: [
+      SizedBox(
+        height: 50,
+        width: double.infinity,
+        child: Center(
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemCount: activeCode.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Container(
+                  height: 25,
+                  width: 25,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: activeCode[index] == true
+                        ? const Color(0xFF26BAEE)
+                        : const Color(0xFFEAEEF1),
+                  ),
+                ),
+              );
+            },
+          ),
         ),
-        itemCount: 12,
-        itemBuilder: (BuildContext context, int index) {
-          return index == 9
-              ? Text(
-            'Forget?',
-            textAlign: TextAlign.center,
-            style: MyStyles.textStyle10.copyWith(
-              color: MyColors.red,
-              fontWeight: FontWeight.bold,
-            ),
-          )
-              : index == 10
-              ? GestureDetector(
-            onTap: () {
-              // print(zero.toString());
-              result.add(zero.toString());
-              print(result.join());
-            },
-            child: Text(
-              zero.toString(),
-              textAlign: TextAlign.center,
-              style: MyStyles.textStyle20.copyWith(
-                color: MyColors.mainColor,
-              ),
-            ),
-          )
-              : index == 11
-              ? Container(
-              alignment: Alignment.topCenter,
-              child: Image.asset(IconsAssets.fingerPrint00))
-              : GestureDetector(
-            onTap: () {
-              // print(number[index]);
-              result.add([number[index]].toString());
-              print(result.join());
-            },
-            child: Text(
-              number[index].toString(),
-              textAlign: TextAlign.center,
-              style: MyStyles.textStyle20.copyWith(
-                color: MyColors.mainColor,
-              ),
-            ),
-          );
-        },
       ),
-    );
+      const SizedBox(height: 25),
+      SizedBox(
+        height: 450,
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 40,
+            mainAxisExtent: 90,
+          ),
+          itemCount: 12,
+          itemBuilder: (BuildContext context, int index) {
+            return index == 9
+                ? Text(
+                    'Forget?',
+                    textAlign: TextAlign.center,
+                    style: MyStyles.textStyle10.copyWith(
+                      color: MyColors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                : index == 10
+                    ? GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (result.length < 6) {
+                              result.add(zero.toString());
+                              activeCode[activeCodenum++] = true;
+                              print(result.join());
+                            }
+                          });
+                        },
+                        child: Text(
+                          zero.toString(),
+                          textAlign: TextAlign.center,
+                          style: MyStyles.textStyle20.copyWith(
+                            color: MyColors.mainColor,
+                          ),
+                        ),
+                      )
+                    : index == 11
+                        ? Container(
+                            alignment: Alignment.topCenter,
+                            child: Image.asset(IconsAssets.fingerPrint00))
+                        : GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (result.length < 6) {
+                                  result.add([number[index]].toString());
+                                  activeCode[activeCodenum++] = true;
+                                  print(result.join());
+                                }
+                              });
+                            },
+                            child: Text(
+                              number[index].toString(),
+                              textAlign: TextAlign.center,
+                              style: MyStyles.textStyle20.copyWith(
+                                color: MyColors.mainColor,
+                              ),
+                            ),
+                          );
+          },
+        ),
+      ),
+    ]);
   }
 }

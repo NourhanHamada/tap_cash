@@ -22,20 +22,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // final _formKey = GlobalKey<FormState>();
-  // final _emailController = TextEditingController();
-  // final _passwordController = TextEditingController();
-  // final _phoneFocusNode = FocusNode();
-  // final _emailFocusNode = FocusNode();
-  // final _passwordFocusNode = FocusNode();
-  // final _repeatPasswordFocusNode = FocusNode();
-  // bool isChecked = false;
-  // bool isPasswordVisible = false;
-  // bool isRepeatPasswordVisible = false;
-  // String? email;
-  // String? password;
-  // late bool _rememberMe = false;
-
   @override
   void initState() {
     // _getRememberMe();
@@ -68,49 +54,17 @@ class _LoginScreenState extends State<LoginScreen> {
   //   await prefs.setString('password', _passwordController.text);
   // }
 
-  // @override
-  // void dispose() {
-  //   _emailController.dispose();
-  //   _passwordController.dispose();
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthProvider>(context);
     final loginController = Provider.of<LoginController>(context);
     final userPerferences = Provider.of<UserPerferences>(context);
 
-    // void login() {
-    //   final form = _formKey.currentState;
-    //   if (form!.validate()) {
-    //     form.save();
-    //     auth.login(email, password).then((response) {
-    //       if (response['status']) {
-    //         // Provider.of<UserProvider>(context, listen: false).setUser(user);
-    //         GoRouter.of(context).pushReplacement(AppRouter.layout);
-    //       } else {
-    //         Flushbar(
-    //                 title: "login Failed",
-    //                 message: response.toString(),
-    //                 duration: const Duration(seconds: 10))
-    //             .show(context);
-    //       }
-    //     });
-    //   } else {
-    //     Flushbar(
-    //             title: "Invalid Form",
-    //             message: 'please complete the form properly',
-    //             duration: const Duration(seconds: 10))
-    //         .show(context);
-    //   }
-    // }
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
           //HEAD
           child: SingleChildScrollView(
             child: Column(
@@ -324,9 +278,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: (){
-
-                      },
+                      onTap: () {},
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
