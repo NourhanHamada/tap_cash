@@ -24,7 +24,7 @@ class OnBoardScreen extends StatefulWidget {
 class _OnBoardScreenState extends State<OnBoardScreen> {
   @override
   void initState() {
-    // _checkIfSeen();
+    _checkIfSeen();
     super.initState();
   }
 
@@ -185,5 +185,3 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
     );
   }
 }
-
-// To Do - -> Don't forget to call a _checkIfSeen function !!!!
